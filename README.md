@@ -6,7 +6,7 @@
 ## nomenclature
 
 pro_admin_scripts_openSUSE
- \|      \|          \|
+ |      |          | \n
  |      |          |-- target : target, these scripts will predominantely work on openSUSE hosts
  |      |------------ purpose : this software project contains scripts for administrating purposes
  |----------------------- pro : project identifier
