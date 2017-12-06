@@ -1,4 +1,4 @@
-# pro_admin_scripts_openSUSE
+# Administration Scripts for openSUSE
 
 ## brief
 
