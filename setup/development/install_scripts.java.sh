@@ -60,10 +60,22 @@ function do_check_arguments() {
 }
 
 # #############################################################################
-# 
+# \brief java application use 'update_alternatives' to find their VM, hence
+# 	 we have to update the tables
 # #############################################################################
 function do_update_alternatives_java() {
-	echo "-- update alternatives java"
+	do_print_debug "update alternatives java"
+}
+
+
+# #############################################################################
+# 
+# #############################################################################
+function do_update_alternatives_javac() {
+	do_print_debug "update alternatives java"
+
+        update-alternatives --install "/usr/bin/java" "java" "/usr/java/latest/bin/java" 1
+        update-alternatives --set java /usr/java/latest/bin/java
 }
 
 
@@ -71,28 +83,28 @@ function do_update_alternatives_java() {
 # 
 # #############################################################################
 function do_install_jdk() {
-	echo "-- installing JDK"
+	do_print_debug "installing JDK"
 
-	# 
 }
 
-
+# #############################################################################
+# 
+# #############################################################################
+function do_compress_manual() {
+	do_print_debug "compressing manual"
+}
 
 # #############################################################################
 # 
 # #############################################################################
 function do_install_jre() {
-        echo "-- installing JRE"
+        do_print_debug "installing JRE"
 
         # install the new java package
         rpm -ivh $1
 
         # remove the opensource package
         zypper rm icedtea-web
-
-        # declate the alternatives
-        update-alternatives --install "/usr/bin/java" "java" "/usr/java/latest/bin/java" 1
-        update-alternatives --set java /usr/java/latest/bin/java
 
 	# zip all the manual files within the installation folder
 
@@ -109,8 +121,12 @@ function do_install_jre() {
 # or a development kit
 # #############################################################################
 function do_check_and_run() {
+
 	
-	echo "do check and run"
+	do_print_debug "do check and run"
+
+
+	switch 
 }
 
 
