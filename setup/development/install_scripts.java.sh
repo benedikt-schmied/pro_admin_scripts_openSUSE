@@ -140,6 +140,10 @@ function do_print_help() {
 	echo $(do_print_date) "-t		test subfunctions, no install"
 }
 
+# #############################################################################
+# check, what we have to install either a simple runtime environment 
+# or a development kit
+# #############################################################################
 case $1 in
         install)
 		do_check_and_run $2
