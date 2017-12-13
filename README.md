@@ -21,4 +21,8 @@ pro_admin_scripts_openSUSE
 
 ###
 
-# unspecified
+## Working / Tested With
+
+- openSUSE LEAP 42.1
+- openSUSE LEAP 42.2
+- openSUSE LEAP 42.3

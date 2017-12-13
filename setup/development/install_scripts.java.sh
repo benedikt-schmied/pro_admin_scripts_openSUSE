@@ -84,6 +84,18 @@ function do_update_alternatives_javac() {
 # #############################################################################
 function do_install_jdk() {
 	do_print_debug "installing JDK"
+	
+	# install the new java package
+	rpm -ivh $1
+	
+	# update alternatives javac
+	do_update_alternatives_javac
+
+	# compress the manual files
+	do_compress_manual	
+	
+	# create copy the zipped files
+	
 
 }
 
@@ -97,36 +109,59 @@ function do_compress_manual() {
 # #############################################################################
 # 
 # #############################################################################
+function do_uninstall_icedtea-web() {
+
+	do_print_debug "uninstalling icedtea"
+
+	# remove the opensource package
+	zypper rm icedtea-web
+}
+
+# #############################################################################
+# 
+# #############################################################################
 function do_install_jre() {
         do_print_debug "installing JRE"
 
         # install the new java package
         rpm -ivh $1
 
-        # remove the opensource package
-        zypper rm icedtea-web
-
-	# zip all the manual files within the installation folder
-
-
-        # check, whether we find the browser plugin
+	# check, whether we find the browser plugin
         rpm -ql $(rpm -qa | grep jre) | grep libnpjp2.so
 
-        # 
+        # create a link onto this shared object
         plugin=$(rpm -ql $(rpm -qa | grep jre) | grep libnpjp2.so) && ln -svf "$plugin" /usr/lib64/browser-plugins/
+
+	# update alternatives
+	do_update_alternatives_java
+
+	
 }
 
 # #############################################################################
 # check, what we have to install either a simple runtime environment 
 # or a development kit
+# 
+# \param $1 rpm - package 
 # #############################################################################
 function do_check_and_run() {
 
 	
 	do_print_debug "do check and run"
 
-
-	switch 
+	# check, whether we've got a jre or jdk package
+	if [[ $1 == jdk*.rpm ]];
+	then
+		do_uninstall_icedtea-web
+		do_install_jdk $1
+	elif [[ $1 == jre*.rpm ]];
+	then
+		do_uninstall_icedtea-web
+		do_install_jre $1
+	else 
+		do_print_alert "unknown package"
+	fi
+ 
 }
 
 
@@ -135,7 +170,8 @@ function do_check_and_run() {
 # or a development kit
 # #############################################################################
 function do_print_help() {
-	echo $(do_print_date) "install		test"
+	echo $(do_print_date) "install		custom path to the rpm - package"
+	echo $(do_print_date) "standard		standard installation routine"
 	echo $(do_print_date) "-h		help"
 	echo $(do_print_date) "-t		test subfunctions, no install"
 }
@@ -143,11 +179,18 @@ function do_print_help() {
 # #############################################################################
 # check, what we have to install either a simple runtime environment 
 # or a development kit
+#
+# \param  $1    command
+# \param  $2    rpm - package
 # #############################################################################
 case $1 in
         install)
+		do_check_arguments $1 $2 $3
 		do_check_and_run $2
                 ;;
+	standard)
+		do_check_and_run "path_to_server"
+		;;
 	-h)
 		do_print_help
 		;;
