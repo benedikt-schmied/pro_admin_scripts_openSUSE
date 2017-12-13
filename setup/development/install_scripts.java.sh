@@ -102,8 +102,43 @@ function do_install_jdk() {
 # #############################################################################
 # 
 # #############################################################################
+function do_uninstall_manual() {
+	do_print_debug "uninstall manual"
+
+	# we will find the currently installed files, within the java latest
+	# folder
+	targetdir=/usr/java/latest/man/man1
+	linkdir=/usr/share/man/man1
+
+	# first, fetch all files in the current installation
+	a=$(find $targetdir -iname "*.1")
+	
+	# now, we loop over those files and delete the links
+	for i in ${a[@]}; 
+	do
+		# first remove the zipped manual in the targetdr 
+		if [ -f $i.gz ];
+		then
+			rm $i.gz;
+		fi
+
+		# second, remove the link in the manual folder	
+		tmpa=$(basename $i);
+		if [ -f $linkdir/$tmpa.gz ];
+		then
+			rm $linkdir/$tmpa.gz 
+		fi
+	done;
+}
+
+# #############################################################################
+# 
+# #############################################################################
 function do_compress_manual() {
 	do_print_debug "compressing manual"
+
+	# first, try to uninstall the previously installed manuals
+	
 }
 
 # #############################################################################
@@ -203,7 +238,9 @@ case $1 in
 		do_print_debug "test run"
 		echo ">>>>> checking arguments routine"
 		do_check_arguments $1 $2 $3
-		
+		;;
+	-tu)	
+		do_uninstall_manual
 		;;
         *)
                 ;;
