@@ -62,25 +62,45 @@ function do_check_arguments() {
 # #############################################################################
 # \brief java application use 'update_alternatives' to find their VM, hence
 # 	 we have to update the tables
+#
+# \param void
 # #############################################################################
 function do_update_alternatives_java() {
 	do_print_debug "update alternatives java"
+
+	# installing: 
+	# link="/usr/bin/java": symlink pointing
+	# name="java": is the master name of the link group
+	# path="/usr/java...": location of the target files
+	# priority=1: higher priority number of higher priority in automatic mode
+	update-alternatives --install "/usr/bin/java/" "java" "/usr/java/latest/bin/java" 1
+
+	# set
+	update-alternatives --set "java" "/usr/java/latest/bin/java"
 }
 
 
 # #############################################################################
-# 
+# \brief javac toolchain shall made known to the update-alternatives sub - 
+#        subsystem
+#
+# \param void 
 # #############################################################################
 function do_update_alternatives_javac() {
-	do_print_debug "update alternatives java"
+	do_print_debug "update alternatives javac"
 
-        update-alternatives --install "/usr/bin/java" "java" "/usr/java/latest/bin/java" 1
+        # installing
+	update-alternatives --install "/usr/bin/java" "java" "/usr/java/latest/bin/java" 1
+
+	# set: java is an alternative to /usr/java...
         update-alternatives --set java /usr/java/latest/bin/java
 }
 
 
 # #############################################################################
-# 
+# \brief installing the development kit
+#
+# \param $1 *.rpm - package 
 # #############################################################################
 function do_install_jdk() {
 	do_print_debug "installing JDK"
@@ -100,7 +120,9 @@ function do_install_jdk() {
 }
 
 # #############################################################################
+# \brief uninstall the manual
 # 
+# \param void 
 # #############################################################################
 function do_uninstall_manual() {
 	do_print_debug "uninstall manual"
@@ -134,7 +156,9 @@ function do_uninstall_manual() {
 }
 
 # #############################################################################
-# 
+# \brief install the manual
+#
+# \param void
 # #############################################################################
 function do_install_manual() {
 	do_print_debug "install manual"
@@ -163,7 +187,9 @@ function do_install_manual() {
 }
 
 # #############################################################################
-# 
+# \brief compress the manual
+#
+# \param void
 # #############################################################################
 function do_compress_manual() {
 	do_print_debug "compressing manual"
@@ -186,7 +212,9 @@ function do_compress_manual() {
 }
 
 # #############################################################################
+# \brief uninstall the opensource - package
 # 
+# \param void
 # #############################################################################
 function do_uninstall_icedtea-web() {
 
@@ -197,7 +225,9 @@ function do_uninstall_icedtea-web() {
 }
 
 # #############################################################################
+# \brief install the runtime environment
 # 
+# \param package
 # #############################################################################
 function do_install_jre() {
         do_print_debug "installing JRE"
