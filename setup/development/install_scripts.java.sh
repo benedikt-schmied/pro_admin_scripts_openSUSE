@@ -116,17 +116,48 @@ function do_uninstall_manual() {
 	# now, we loop over those files and delete the links
 	for i in ${a[@]}; 
 	do
+	
+		# second, remove the link in the manual folder	
+		tmpa=$(basename $i);
+		if [ $linkdir/$tmpa.gz ];
+		then
+			rm $linkdir/$tmpa.gz 
+		fi
+
 		# first remove the zipped manual in the targetdr 
 		if [ -f $i.gz ];
 		then
 			rm $i.gz;
 		fi
 
-		# second, remove the link in the manual folder	
+	done;
+}
+
+# #############################################################################
+# 
+# #############################################################################
+function do_install_manual() {
+	do_print_debug "install manual"
+
+	# we will find the currently installed files, within the java latest
+	# folder
+	targetdir=/usr/java/latest/man/man1
+	linkdir=/usr/share/man/man1
+
+	# compress the target files
+	do_compress_manual
+
+	# first, fetch all files in the current installation
+	a=$(find $targetdir -iname "*.1.gz")
+
+	# now, we loop over those files and delete the links
+	for i in ${a[@]}; 
+	do
+		# create links onto the latest directory	
 		tmpa=$(basename $i);
-		if [ -f $linkdir/$tmpa.gz ];
+		if ! [ -f $linkdir/$tmpa ];
 		then
-			rm $linkdir/$tmpa.gz 
+			ln -s $i $linkdir
 		fi
 	done;
 }
@@ -139,6 +170,19 @@ function do_compress_manual() {
 
 	# first, try to uninstall the previously installed manuals
 	
+	targetdir=/usr/java/latest/man/man1
+
+	# grap all files that end with '1'
+	a=$(find $targetdir -iname "*.1")
+	
+	#now, take each file and compress it
+	for i in ${a[@]};
+	do
+		if ! [ -f $i.gz ];
+		then
+			gzip -k $i;
+		fi
+	done;
 }
 
 # #############################################################################
@@ -239,8 +283,14 @@ case $1 in
 		echo ">>>>> checking arguments routine"
 		do_check_arguments $1 $2 $3
 		;;
-	-tu)	
+	man_uninstall)	
 		do_uninstall_manual
+		;;
+	man_install)
+		do_install_manual
+		;;
+	man_compress)
+		do_compress_manual
 		;;
         *)
                 ;;
