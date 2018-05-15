@@ -56,18 +56,46 @@ function do_check_and_run() {
 
 	
 	do_print_debug "do check and run"
+	
+	packages=(python python-pip)
 
-	zypper in "apache allura"3
+	for packages in ${packages[@]};
+	do
+		zypper in $package
+	done;
 
 	# first, try to update pip, just in case "apache allura" has already been installed
-	"apache allura"3 -m pip install --upgrade pip
+	python -m pip install --upgrade pip
 
 	# now, take the pip installer, to install various modules
-	modules=(matplotlib numpy jupyter)
-	for i in ${modules[@]}
+	pmodules=(virtualenv)
+	for pmodule in ${pmodules[@]};
 	do
-		"apache allura"3 -m pip install $i
-	done
+		python -m pip install $pmodule
+	done;
+
+	# create a virtual environment
+	virtualenv env-allura
+
+	# now, we use the virtual environment
+	. env-allura/bin/activate
+
+	# create the log directory
+	mkdir -p /var/log/allura
+	mkdir chown wwwrun:www /var/log/allura
+	
+	# installing the allura code and dependencies
+	mkdir src
+	cd src
+	git clone https://git-wip-us.apache.org/repos/asf/allura.git allura
+	
+	# collect the correct requirements.txt file
+	cd allura
+	pip install -r requirements.txt
+
+	# run the allura tools
+	./rebuild-all.bash
+
 }
 
 
