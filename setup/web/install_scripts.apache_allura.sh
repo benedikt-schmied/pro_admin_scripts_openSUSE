@@ -57,13 +57,13 @@ function do_check_and_run() {
 	
 	do_print_debug "do check and run"
 	
-	packages=(python python-pip)
+	packages=(python python-pip python-pysvn)
 
-	for packages in ${packages[@]};
+	for package in ${packages[@]};
 	do
-		zypper in $package
+		zypper install $package
 	done;
-
+	
 	# first, try to update pip, just in case "apache allura" has already been installed
 	python -m pip install --upgrade pip
 
@@ -73,7 +73,6 @@ function do_check_and_run() {
 	do
 		python -m pip install $pmodule
 	done;
-
 	# create a virtual environment
 	virtualenv env-allura
 
@@ -82,13 +81,12 @@ function do_check_and_run() {
 
 	# create the log directory
 	mkdir -p /var/log/allura
-	mkdir chown wwwrun:www /var/log/allura
+	chown wwwrun:www /var/log/allura
 	
 	# installing the allura code and dependencies
 	mkdir src
 	cd src
 	git clone https://git-wip-us.apache.org/repos/asf/allura.git allura
-	
 	# collect the correct requirements.txt file
 	cd allura
 	pip install -r requirements.txt
