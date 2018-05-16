@@ -1,0 +1,1000 @@
+   61  git remote -v
+   62  git log --oneline --decorate --graph --all
+   63  git branch
+   64  git remote show
+   65  git checkout --track origin/master
+   66  git checkout --track origin/master2
+   67  git checkout --track origin
+   68  git checkout -b master2 --track origin/master
+   69  git status
+   70  git checkout master
+   71  git branch -m githubmaster
+   72  git status
+   73  git checkout master2
+   74  git branch -m master
+   75  git status
+   76  git pull
+   77  git push origin master
+   78  git status
+   79  git remote
+   80  git remote -mv
+   81  git remote -v
+   82  git log
+   83  git pull
+   84  ssh linux-5k9k
+   85  exit
+   86  cd projects/hardware/
+   87  ls
+   88  ./status_of_repo.sh 
+   89  ls -la
+   90  ./status_of_repo.sh 
+   91  ls -la
+   92  cd pro_event_light_a_mkI
+   93  git status
+   94  git diff pro_event_light_a_mkI/eagle.epf
+   95  ssh linux-5k9k
+   96  exit
+   97  ssh linux-5k9k
+   98  exit
+   99  ping google.de
+  100  ls -la
+  101  fdisk -l
+  102  sudo fdisk -l
+  103  ls -la
+  104  fdisk -l
+  105  su
+  106  where audex
+  107  which audex
+  108  cd /opt/
+  109  ls
+  110  cd eclipse/
+  111  ls
+  112  cd ..
+  113  ls
+  114  ls -la
+  115  cd ~/Downloads/eclipse-installer/
+  116  ./eclipse-inst 
+  117  sudo ./eclipse-inst 
+  118  su
+  119  ./eclipse-inst 
+  120  ls -la
+  121  ls-la
+  122  ls -la
+  123  cd ..
+  124  ls
+  125  mv eclipse-inst* /opt/eclipse/
+  126  ls -la
+  127  rm -rf eclipse-installer/
+  128  sudo rm -rf eclipse-installer/
+  129  ls -la
+  130  tar -xtvzf eclipse-inst-linux64.tar.gz 
+  131  tar -xvzf eclipse-inst-linux64.tar.gz 
+  132  ls -la
+  133  cd eclipse-installer/
+  134  ls 
+  135  su
+  136  cd /opt/eclipse/
+  137  ls
+  138  ./eclipse 
+  139  ls -la
+  140  cd ..
+  141  ls
+  142  sudo chown -R bensch:users ./*
+  143  cd eclipse/
+  144  ls
+  145  ./eclipse 
+  146  cd ..
+  147  ls
+  148  ls -la
+  149  rm -rf eclipse/
+  150  sudo rm -rf eclipse/
+  151  cd eclipse/
+  152  ls
+  153  ./eclipse 
+  154  sudo ./eclipse 
+  155  su
+  156  cd ..
+  157  ls
+  158  mkdir eclipse
+  159  sudo mkdir eclipse
+  160  ls -la
+  161  chown -R bensch:users ./*
+  162  sudo chown -R bensch:users ./*
+  163  cd eclipse/
+  164  ls
+  165  rm -rf eclipse-inst
+  166  ls -l
+  167  rm -rf eclipse-installer/
+  168  tar -xvzf eclipse-inst-linux64.tar.gz 
+  169  ls -la
+  170  ./eclipse-installer/eclipse-inst 
+  171  ls -la
+  172  cd oxygen/
+  173  ls
+  174  cd eclipse/
+  175  ls
+  176  ./eclipse 
+  177  su
+  178  docker version
+  179  systemctl enable docker.service 
+  180  sudo systemctl enable docker.service 
+  181  docker version
+  182  systemctl start docker.service 
+  183  sudo systemctl start docker.service 
+  184  docker version
+  185  zypper search docker
+  186  docker version
+  187  rpm --help
+  188  rpm -a docker
+  189  rpm -ev docker
+  190  rpm -ev docker*
+  191  rpm -e=docker+
+  192  rpm -e=docker
+  193  rpm -e docker
+  194  rpm -e docker*
+  195  rpm -e docker-bash-completion docker-zsh-completion docker
+  196  sudo rpm -e docker-bash-completion docker-zsh-completion docker
+  197  sudo rpm -ef docker-bash-completion docker-zsh-completion docker
+  198  zypper search docker
+  199  curl -sSl https://get.docker.com/ | sh
+  200  sudo zypper ar https://yum.dockerproject.org/repo/main/opensuse/13.2/   docker-main
+  201  zypper search docker
+  202  su
+  203  docker version
+  204  zypper up
+  205  su
+  206  exit
+  207  cd projects/hardware/pro_event_light_a_mkI
+  208  git pull
+  209  git status
+  210  vi .git/config 
+  211  git push github master
+  212  vi .git/config 
+  213  git status
+  214  git push github master
+  215  cd /home/bensch/Documents/Documents_bensch/work/02_curriculum_vitae/ger
+  216  clear
+  217  cd /home/bensch/Documents/Documents_bensch/work/00_applications/40_Fein_GmbH
+  218  clear
+  219  cd /home/bensch/Documents/Documents_bensch/work/02_curriculum_vitae/ger
+  220  clear
+  221  cd /home/bensch/Documents/Documents_bensch/work/00_applications/40_Fein_GmbH
+  222  clear
+  223  cd /home/bensch/Documents/Documents_bensch/work/00_applications/404_Andreas_Stihl_AG_und_Co
+  224  clear
+  225  cd /home/bensch/Documents/Documents_bensch/work/00_applications/405_Kries_GmbH_Co_KG
+  226  clear
+  227  cd Documents/Documents_bensch/
+  228  git pull
+  229  git status
+  230  git submodule udpate
+  231  git submodule update
+  232  git status
+  233  cd work/
+  234  ls
+  235  cd 00_applications/
+  236  ls
+  237  ls -la
+  238  cp 404_Andreas_Stihl_AG_und_Co 405_Kries_GmbH_Co_KG
+  239  ls -la
+  240  cp -f 404_Andreas_Stihl_AG_und_Co 405_Kries_GmbH_Co_KG/
+  241  mkdir 405_Kries_GmbH_Co_KG/
+  242  cp -f 404_Andreas_Stihl_AG_und_Co/* 405_Kries_GmbH_Co_KG/
+  243  cd 405_Kries_GmbH_Co_KG/
+  244  ls
+  245  ls -la
+  246  rm stihl.ingenieur_hard_und_softwareentwicklung_dc_motorelektronik.pdf
+  247  cp ../400_Job_Pool/kries-energietechnik_gmbh_co_kg.pdf .
+  248  ls
+  249  ls -la
+  250  for a in ./*; do echo $a; done;
+  251  for a in ./*; do echo $a; b=$(echo $i | sed -r "s/Andreas_Stihl_AG_CoKG/Kries_GmbH_Co_KG/");  done;
+  252  echo $b
+  253  ls -la
+  254  for a in ./*; do echo $a; b=$(echo $a | sed -r "s/Andreas_Stihl_AG_CoKG/Kries_GmbH_Co_KG/");  done;
+  255  echo $b
+  256  for a in ./*; do echo $a; echo $a | sed -r "s/Andreas_Stihl_AG_CoKG/Kries_GmbH_Co_KG/";  done;
+  257  for a in ./*; do echo $a; mv $a $(echo $a | sed -r "s/Andreas_Stihl_AG_CoKG/Kries_GmbH_Co_KG/");  done;
+  258  ls -la
+  259  vi Schmied_B.Kries_GmbH_Co_KG.mappe.kilepr 
+  260  vi Schmied_B.Kries_GmbH_Co_KG.anschreiben.kilepr 
+  261  cd ..
+  262  git status
+  263  cd ..
+  264  git status
+  265  git add *
+  266  git status
+  267  git checkout master
+  268  git status
+  269  git diff 02_curriculum_vitae/ger/schmied.benedikt.curriculum_vitae.ecv.kilepr
+  270  git commit -m "neue Firma: Kries GmbH"
+  271  git push origin master
+  272  git pull
+  273  git push origin master
+  274  cd /home/bensch/Documents/Documents_bensch/work/00_applications/405_Kries_GmbH_Co_KG
+  275  clear
+  276  cd /home/bensch/Documents/Documents_bensch/work/00_applications/405_Kries_GmbH_Co_KG
+  277  clear
+  278  cd Documents/Documents_bensch/
+  279  git status
+  280  cd work/
+  281  git status
+  282  git add *
+  283  git commit -m "first draft of Kries Anschreiben / Mappe"
+  284  git push origin master
+  285  git status
+  286  cd ..
+  287  git status
+  288  git add work/
+  289  git commit -m "new commit in work"
+  290  git push origin master
+  291  git pull
+  292  git push origin master
+  293  git status
+  294  ssh linux-5k9k
+  295  exit
+  296  cd /home/bensch/Documents/Documents_bensch/work/00_applications/405_Kries_GmbH_Co_KG
+  297  clear
+  298  cd /home/bensch/Documents/Documents_bensch/work/02_curriculum_vitae/ger
+  299  clear
+  300  cd /home/bensch/Documents/Documents_bensch/work/00_applications/405_Kries_GmbH_Co_KG
+  301  clear
+  302  cd /home/bensch/Documents/Documents_bensch/work/02_curriculum_vitae/ger
+  303  clear
+  304  cd /home/bensch/Documents/Documents_bensch/work/00_applications/405_Kries_GmbH_Co_KG
+  305  clear
+  306  cd /home/bensch/Documents/Documents_bensch/work/02_curriculum_vitae/ger
+  307  clear
+  308  cd /home/bensch/Documents/Documents_bensch/work/00_applications/405_Kries_GmbH_Co_KG
+  309  clear
+  310  cd 
+  311  cd Documents/Documents_bensch/work/
+  312  git status
+  313  git add *
+  314  git commit -m "gesendet zu Kries GmbH"
+  315  git push origin master
+  316  git tag
+  317  git tag v1
+  318  git push origin master
+  319  git push origin v1
+  320  exit
+  321  cd Downloads/
+  322  vi ind
+  323  vi index.html 
+  324  git clone https://github.com/benedikt-schmied/pro_virtual_controler_bus_BERKELY_SOCKETS.git
+  325  cd pro_virtual_controler_bus_BERKELY_SOCKETS/
+  326  ls
+  327  ls -la
+  328  cd ..
+  329  mv pro_virtual_controler_bus_BERKELY_SOCKETS/ pro_virtual_controller_bus_BERKELY_SOCKETS/
+  330  cd pro_virtual_controller_bus_BERKELY_SOCKETS/
+  331  vi .git/config 
+  332  git status
+  333  git pull
+  334  vi README.txt 
+  335  git status
+  336  git add README.txt 
+  337  git commit -m "first draft of README.txt"
+  338  git push origin master
+  339  vi README.txt 
+  340  ls -la
+  341  mkdir test_virtual_controller_bus_BERKELY_SOCKETS
+  342  touch test_virtual_controller_bus_BERKELY_SOCKETS/.gitignore
+  343  git status
+  344  git add *
+  345  git status
+  346  mkdir test_virtual_controller_bus_clients
+  347  touch test_virtual_controller_bus_clients/.gitignore
+  348  git status
+  349  git add *
+  350  git status
+  351  ls -la
+  352  git mv pro_virtual_controller_bus_BERKELY_SOCKETS/ pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  353  git mv test_virtual_controller_bus_BERKELY_SOCKETS/ test_virtual_controller_bus_BERKELEY_SOCKETS/
+  354  git status
+  355  cd pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  356  ls
+  357  cd ..
+  358  ls
+  359  mv pro_virtual_controller_bus_BERKELY_SOCKETS/ pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  360  cd pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  361  vi .git/config 
+  362  git status
+  363  git add *
+  364  git status
+  365  ls -la
+  366  cd pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  367  ls
+  368  make
+  369  ls -la
+  370  ./pro_virtual_controller_bus_BERKELY_SOCKETS 
+  371  git status
+  372  git add *
+  373  cd ..
+  374  git status
+  375  git add *
+  376  git status
+  377  git commit -m "initial check in with working main project"
+  378  git push origin master
+  379  ls -la
+  380  vi README.txt 
+  381  git status
+  382  git add README.txt 
+  383  git commit --ammend
+  384  git commit --amend
+  385  git push origin master
+  386  git pull
+  387  git push origin master
+  388  git config user.email "development@benedikt-schmied.de"
+  389  git status
+  390  git .gitignore
+  391  vi .gitignore 
+  392  git status
+  393  git add *
+  394  git status
+  395  git add *
+  396  git status
+  397  git commit -m "pushing the first draft of the queuing sub component to the remote repository"
+  398  git push origin master
+  399  git tag v0.1
+  400  git push origin v0.1
+  401  git status
+  402  git add *
+  403  git commit -m "last commit for tonight"
+  404  git push origin master
+  405  cd projects/software/pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  406  ls
+  407  git status
+  408  git diff test_virtual_controller_bus_clients/main.c
+  409  vi README.txt 
+  410  git add README.txt 
+  411  ls -la
+  412  mkdir mod_unified_sockets
+  413  mv mod_unified_sockets mod_unified_sockets_BERKELEY_SOCKETS
+  414  git status
+  415  git add *
+  416  git status
+  417  git commit -m "setting up working test clients
+  418  the test clients shall send messages to the master / server and should receive messages from other masters"
+  419  git status
+  420  git push origin master
+  421  ls -la
+  422  touch test_runner.sh
+  423  chmod +x test_runner.sh 
+  424  vi test_runner.sh 
+  425  ./test_
+  426  ./test_runner.sh 
+  427  vi test_runner.sh 
+  428  ./test_runner.sh 
+  429  ./pro_virtual_controller_bus_BERKELEY_SOCKETS/pro_virtual_controller_bus_BERKELEY_SOCKETS 
+  430  git status
+  431  git checkout test_virtual_controller_bus_clients/makefile
+  432  git status
+  433  git add *
+  434  git status
+  435  ./pro_virtual_controller_bus_BERKELEY_SOCKETS/pro_virtual_controller_bus_BERKELEY_SOCKETS 
+  436  vi test_runner.sh 
+  437  ./test_runner.sh 
+  438  vi ./test_runner.sh 
+  439  ./test_runner.sh 
+  440  ./pro_virtual_controller_bus_BERKELEY_SOCKETS/pro_virtual_controller_bus_BERKEL
+  441  ./pro_virtual_controller_bus_BERKELEY_SOCKETS/pro_virtual_controller_bus_BERKELEY_SOCKETS 
+  442  vi ./test_runner.sh 
+  443  ./test_runner.sh 
+  444  git status
+  445  git add *
+  446  git commit -m "accomplished communication between server and clients"
+  447  git push origin master
+  448  git status
+  449  git add *
+  450  git status
+  451  ls -la
+  452  cp -r mod_unified_sockets_BERKELEY_SOCKETS mod_queue
+  453  ls -la
+  454  cd mod_queue/
+  455  ls
+  456  l s-la
+  457  ls -la
+  458  rm unified_sockets*
+  459  ls -la
+  460  rm libmod_unified_sockets_BERKELEY_SOCKETS.a
+  461  ls -la
+  462  cd ..
+  463  ls -la
+  464  test_mod_queue
+  465  mkdir test_mod_queue
+  466  ./test_runner.sh 
+  467  ps -aux
+  468  sudo kill 6344
+  469  sudo kill 6351 6358 6374 6381 6397
+  470  ps -aux
+  471  ./test_runner.sh 
+  472  ls -la
+  473  ps -aux
+  474  sudo kill 6436
+  475  git status
+  476  git add *
+  477  git status
+  478  git commit -m "separated queue softare component as well as its test cases
+  479  the queuing library is now compiled separately and archived in order to used it in various projects"
+  480  git push origin master
+  481  git tag
+  482  git tag v0.2
+  483  git push origin v0.2
+  484  ./test_runner.sh 
+  485  git status
+  486  git add *
+  487  git commit -m "first simple test cases"
+  488  git push origin master
+  489  git status 
+  490  git add *
+  491  git status
+  492  git add *
+  493  git commit -m "rudimentary test of all queuing interfaces
+  494  we tested:
+  495  - open
+  496  - close
+  497  - add_to_list
+  498  - remove_from_list
+  499  tomorrow, we need to test:
+  500  - add and remove simultaneously from different contexts
+  501  "
+  502  git push origin master
+  503  git tag
+  504  git tag v0.3
+  505  git push origin v0.3
+  506  man ar
+  507  cd /home/bensch/Documents/Documents_bensch/work/00_applications/405_Kries_GmbH_Co_KG
+  508  clear
+  509  cd /home/bensch/Documents/Documents_bensch/work/02_curriculum_vitae/ger
+  510  clear
+  511  cd /home/bensch/Documents/Documents_bensch/work/00_applications/405_Kries_GmbH_Co_KG
+  512  clear
+  513  cd /home/bensch/Documents/Documents_bensch/work/01_Agentur_fuer_Arbeit
+  514  clear
+  515  cd /home/bensch/Documents/Documents_bensch/work/02_curriculum_vitae/ger
+  516  clear
+  517  cd /home/bensch/Documents/Documents_bensch/work/01_Agentur_fuer_Arbeit
+  518  clear
+  519  cd Documents/Documents_bensch/
+  520  git status
+  521  cd work/
+  522  ls
+  523  cd 01_Agentur_fuer_Arbeit/
+  524  ls
+  525  ls-la
+  526  ls -la
+  527  git status
+  528  git add *
+  529  cd ..
+  530  git status
+  531  git commit -m "added Gespraechsnotiz"
+  532  git push origin master
+  533  git status
+  534  cd ..
+  535  git status
+  536  git add work
+  537  git commit -m "new commits in work"
+  538  git push origin master
+  539  cd projects/software/pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  540  wget https://www.gnu.org/licenses/gpl-3.0.txt
+  541  ls -la
+  542  mv gpl-3.0.txt LICENCSE
+  543  mv LICENCSE LICENSE
+  544  git status
+  545  git add *
+  546  git commit -m "added a license file"
+  547  git push origin master
+  548  cd projects/software/pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  549  cd test_virtual_controller_bus_clients/
+  550  ./test_virtual_controller_bus_clients 26
+  551  clear
+  552  ./test_virtual_controller_bus_clients 26
+  553  ./test_virtual_controller_bus_clients 27
+  554  ./test_virtual_controller_bus_clients 10
+  555  ./test_virtual_controller_bus_clients 27
+  556  ./test_virtual_controller_bus_clients 26
+  557  ./test_virtual_controller_bus_clients 10
+  558  ps -aux
+  559  ./test_virtual_controller_bus_clients 10
+  560  cd projects/software/pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  561  ls
+  562  git status
+  563  ls -la
+  564  cd pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  565  ls
+  566  git mv main.c pro_virtual_controller_bus_BERKELEY_SOCKETS.c
+  567  git status
+  568  cd ..
+  569  git status
+  570  git add *
+  571  git status
+  572  cd test_mod_queue/
+  573  ls
+  574  git mv main.c test_mod_queue.c
+  575  cd ..
+  576  ls
+  577  cd test_virtual_controller_bus_clients/
+  578  ls
+  579  git mv main.c test_virtual_controller_bus_clients.c
+  580  cd ..
+  581  git status
+  582  git add *
+  583  git status
+  584  git add *
+  585  git commit m "renamed the main.c files in various projects, extended queue tests (template for deployment)
+  586  it was a bit confusing to have a lot of main.c files within this workspace, thus they were renamed
+  587  additionally, the queuing test was enlarged in order to give a showcase for multithreaded queuing"
+  588  git push origin master
+  589  git status
+  590  git commit -m "renamed the main.c files in various projects, extended queue tests (template for deployment)
+  591  it was a bit confusing to have a lot of main.c files within this workspace, thus they were renamed
+  592  additionally, the queuing test was enlarged in order to give a showcase for multithreaded queuing"
+  593  git push origin master
+  594  git status
+  595  git add *
+  596  git commit -m "creating threads in production code"
+  597  git push origin master
+  598  git status
+  599  git add *
+  600  ls -la
+  601  cd pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  602  ./pro_virtual_controller_bus_BERKELEY_SOCKETS 
+  603  netstat
+  604  netstat | grep pro
+  605  netstat | grep 9999
+  606  ./pro_virtual_controller_bus_BERKELEY_SOCKETS 
+  607  clear
+  608  ./pro_virtual_controller_bus_BERKELEY_SOCKETS 
+  609  clear
+  610  ./pro_virtual_controller_bus_BERKELEY_SOCKETS 
+  611  nmap -sn "localhost"
+  612  nmap -sL "localhost"
+  613  nmap --help
+  614  ./pro_virtual_controller_bus_BERKELEY_SOCKETS 
+  615  namp -sn -p 9999 localhost
+  616  nmap -sn -p 9999 localhost
+  617  ./pro_virtual_controller_bus_BERKELEY_SOCKETS 
+  618  cd projects/software/pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  619  ls
+  620  cd test_virtual_controller_bus_clients/
+  621  ls
+  622  ./test_virtual_controller_bus_clients 25
+  623  ps -aux
+  624  ./test_virtual_controller_bus_clients 25
+  625  ./test_virtual_controller_bus_clients 29
+  626  ./test_virtual_controller_bus_clients 23
+  627  ./test_virtual_controller_bus_clients 29
+  628  ./test_virtual_controller_bus_clients 23
+  629  ./test_virtual_controller_bus_clients 29
+  630  ./test_virtual_controller_bus_clients 23
+  631  cd Downloads/
+  632  vi index.html 
+  633  cd ~/projects/software/pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  634  git status
+  635  git add *
+  636  git commit -m "working virtual controller bus - needs to be refined on some statements
+  637  error handling needs to be refined"
+  638  git push origin master
+  639  git tag
+  640  git tag v0.4
+  641  git push origin v0.4
+  642  man setdetachstate
+  643  cd projects/software/pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  644  ls
+  645  git status
+  646  git diff test_runner.sh 
+  647  chmod 755 test_runner.sh 
+  648  git status
+  649  cd mod_unified_sockets_BERKELEY_SOCKETS/
+  650  git status
+  651  git diff makefile
+  652  git diff unified_sockets
+  653  git diff unified_sockets.h
+  654  git diff unified_sockets_win.
+  655  git diff unified_sockets_win.c
+  656  git add ./*
+  657  git status
+  658  cd ..
+  659  cd pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  660  git status
+  661  git diff makefile
+  662  git mv makefile makefile_win
+  663  git status
+  664  git mv makefile_win makefile
+  665  git status
+  666  cp makefile makefile_win
+  667  git status
+  668  git checkout makefile
+  669  git mv makefile makefile_unix
+  670  git status
+  671  git add makefile_win 
+  672  git status
+  673  git diff pro_virtual_controller_bus_BERKELEY_SOCKETS.c
+  674  git add pro_virtual_controller_bus_BERKELEY_SOCKETS.c 
+  675  cd ..
+  676  cd mod_unified_sockets_BERKELEY_SOCKETS/
+  677  git status
+  678  cp makefile makefile_win
+  679  git reset HEAD makefile
+  680  git status
+  681  git checkout makefile
+  682  git mv makefile makefile_unix
+  683  git status
+  684  git add makefile_win 
+  685  git status
+  686  cd ..
+  687  cd test_virtual_controller_bus_clients/
+  688  git status
+  689  cp makefile makefile_win
+  690  git mv makefile makefile_unix
+  691  git status
+  692  git add makefile_win
+  693  git add makefile_unix 
+  694  git status
+  695  git diff test_virtual_controller_bus_clients.c
+  696  git add test_virtual_controller_bus_clients*
+  697  git status
+  698  cd ..
+  699  git add *
+  700  git status
+  701  git commit -m "introduced different makefiles for windwos and unix"
+  702  git push origin master
+  703  git status
+  704  cd projects/supplementary_media/
+  705  cd literature/
+  706  git status
+  707  git add *
+  708  git status
+  709  git commit -m "new ebook"
+  710  git push origin master
+  711  cd ..
+  712  git status
+  713  git add *
+  714  git commit -m "new commits in literature"
+  715  git push origin master
+  716  ssh linux-5k9k
+  717  exit
+  718  cd '/home/bensch/Documents/Documents_bensch/accomodation/Augsburg - Jakobsplatz 11'
+  719  clear
+  720  cd Documents/Documents_bensch/
+  721  git pull
+  722  git submodule update
+  723  git status
+  724  cd accomodation/
+  725  git status
+  726  git add *
+  727  git status
+  728  git commit -m "added kuendingung für Jakobsplatz"
+  729  git push origin master
+  730  git status
+  731  cd ..
+  732  git status
+  733  git add accomodation/^
+  734  git add accomodation/
+  735  git commit -m "new commits in accomodation"
+  736  git push origin master
+  737  git pull
+  738  git submodule update
+  739  git status
+  740  git pull
+  741  unzip Amt\ \&\ Behörden.zip 
+  742  ps -aux
+  743  ps -aux | grep firefox
+  744  sudo kill 2896
+  745  ssh linux-5k9k
+  746  exit
+  747  cd Documents/Documents_bensch/
+  748  git pull
+  749  git submodule update
+  750  cd friends_and_family/
+  751  git status
+  752  cd ..
+  753  git status
+  754  cd banks
+  755  git status
+  756  git add *
+  757  git status
+  758  git checkout master
+  759  git pull
+  760  git status
+  761  git add *
+  762  git commit -m "new Kontoauszuege"
+  763  git push origin master
+  764  cd ..
+  765  git status
+  766  cd work/
+  767  git status
+  768  git add *
+  769  git status
+  770  cd ..
+  771  cd friends_and_family/
+  772  cd '/home/bensch/Documents/Documents_bensch/accomodation/Augsburg - Jakobsplatz 11'
+  773  clear
+  774  ssh linux-5k9k
+  775  cd Downloads/
+  776  vi index.html 
+  777  cd /home/bensch/Documents/Documents_bensch/university/hSchule_WS10/swpExpSchaltT
+  778  clear
+  779  ssh linux-5k9k
+  780  exit
+  781  ssh linux-5k9k
+  782  exit
+  783  cd /home/bensch/projects/management/__mgm_common/settings
+  784  clear
+  785  cd /opt/
+  786  ls
+  787  cd /usr
+  788  ls
+  789  cd bin
+  790  ls
+  791  find . -iname "connection"
+  792  find . -iname "*connection*"
+  793  ./kde5-nm-connection-editor 
+  794  cd Documents/
+  795  ls
+  796  cd Documents_
+  797  cd Documents_common/
+  798  git pull origin master
+  799  ls -la
+  800  cd ..
+  801  cd Documents_bensch/
+  802  git status
+  803  git pull origin master
+  804  git status
+  805  git submodule update
+  806  git status
+  807  cd accomodation/
+  808  git status
+  809  git add *
+  810  git commit -m "Kündigung für Jakobsplatz"
+  811  git push origin master
+  812  git pull origin master
+  813  git branch local b561479
+  814  git branch local2 b561479
+  815  git checkout master
+  816  git branch local3 1ff7550
+  817  git checkout master
+  818  git merge local2
+  819  git merge local3
+  820  git status
+  821  git push origin master
+  822  cd ..
+  823  ls
+  824  git status
+  825  cd friends_and_family/
+  826  git status
+  827  git checkout -b local
+  828  git add *
+  829  git commit -m "files for Margareta"
+  830  git checkout master
+  831  git merge local
+  832  git push origin master
+  833  cd ..
+  834  ls
+  835  git status
+  836  cd leisure/
+  837  git status
+  838  git checkout -b local
+  839  git add *
+  840  git commit -m "Gästeliste"
+  841  git checkout master
+  842  git merge local
+  843  git push origin master
+  844  git status
+  845  git push origin master
+  846  cd ..
+  847  git status
+  848  cd work/
+  849  git status
+  850  git checkout -b local
+  851  git branch -d local
+  852  git checkout -b local
+  853  git add *
+  854  git commit -m "some files"
+  855  git checkout master
+  856  git merge local
+  857  git status
+  858  git push origin master
+  859  git pull origin master
+  860  cd ..
+  861  git status
+  862  git add *
+  863  git commit -m "new commits in submodules"
+  864  git push origin master
+  865  cd ../
+  866  ls
+  867  cd ..
+  868  cd projects/
+  869  ls
+  870  cd software/
+  871  ls
+  872  meld ../pro_virtual_controller_bus_BERKELEY_SOCKETS-master pro_virtual_controller_bus_BERKELEY_SOCKETS/
+  873  rm -rf ../pro_virtual_controller_bus_BERKELEY_SOCKETS-master*
+  874  ls -la
+  875  cd lib_par/
+  876  ls
+  877  cd sh_lib_par/
+  878  ls
+  879  cd ../..
+  880  ls
+  881  cd ..
+  882  ls
+  883  ls -la
+  884  git clone https://github.com/benedikt-schmied/pro_admin_scripts_openSUSE
+  885  ls -la
+  886  cd pro_admin_scripts_openSUSE/
+  887  ls
+  888  git branch
+  889  git pull origin *
+  890  git pull origin feature/*
+  891  git pull origin feature/allura_installation 
+  892  git branch
+  893  git status
+  894  git fetch --all
+  895  git branch
+  896  git branch -r
+  897  git branch -r | grep -v
+  898  git branch -r | grep -v '\->'
+  899  ls -la
+  900  git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote}"; done;
+  901  git status
+  902  git branch
+  903  git fetch --all
+  904  git pull --all
+  905  git status
+  906  git branch
+  907  git checkout origin/feature/allura_installation 
+  908  git status
+  909  git checkout origin/feature/enhancing_java_installation 
+  910  git checkout feature/enhancing_java_installation 
+  911  git status
+  912  git pull origin feature/enhancing_java_installation
+  913  git status
+  914  git branch
+  915  ls -la
+  916  git status
+  917  cd setup/
+  918  ls
+  919  cd ..
+  920  git branch -a
+  921  git checkout -b feature/allura_installation
+  922  git status
+  923  git pull origin master
+  924  git pull origin feature/allura_installation
+  925  git status
+  926  ls -la
+  927  cd setup/
+  928  ls
+  929  cd web/
+  930  ls
+  931  ./install_scripts.apache_allura.sh 
+  932  vi install_scripts.apache_allura.sh 
+  933  vi install_scripts.apache_allura.sh install
+  934  ./install_scripts.apache_allura.sh install
+  935  sudo ./install_scripts.apache_allura.sh install
+  936  ls -la
+  937  rm wwwrun\:www/
+  938  rm -rf wwwrun\:www/
+  939  rm -rf src/
+  940  ls -la
+  941  sudo rm -rf src chown/
+  942  ls -la
+  943  vi .gitignore 
+  944  git status
+  945  vi install_scripts.apache_allura.sh 
+  946  sudo ./install_scripts.apache_allura.sh install
+  947  vi install_scripts.apache_allura.sh 
+  948  sudo ./install_scripts.apache_allura.sh install
+  949  vi install_scripts.apache_allura.sh 
+  950  sudo ./install_scripts.apache_allura.sh install
+  951  vi install_scripts.apache_allura.sh 
+  952  sudo ./install_scripts.apache_allura.sh install
+  953  ls -la
+  954  rm -rf wwwrun\:www/
+  955  ls -la
+  956  rm -rf src/ chown/
+  957  sudo rm -rf src/ chown/
+  958  vi install_scripts.apache_allura.sh 
+  959  sudo ./install_scripts.apache_allura.sh install
+  960  python -m pip install pysvn
+  961  python -m pip install ForgeSVN
+  962  zypper in pysvn
+  963  sudo zypper in pysvn
+  964  sudo zypper search py*svn
+  965  vi install_scripts.apache_allura.sh 
+  966  sudo ./install_scripts.apache_allura.sh install
+  967  ls -la
+  968  cd src/
+  969  ls
+  970  cd aa
+  971  cd allura/
+  972  ls
+  973  ./rebuild-all.bash 
+  974  sudo ./rebuild-all.bash 
+  975  ls
+  976  cd ..
+  977  ls
+  978  cd ..
+  979  ls
+  980  cd web/
+  981  ls
+  982  cd env-allura/
+  983  ls
+  984  cd bin/
+  985  ls
+  986  . activate
+  987  cd ..
+  988  ls
+  989  cd ..
+  990  ls
+  991  ls -la
+  992  mkdir tmp
+  993  cd tmp
+  994  ls
+  995  wget -nv http://archive.apache.org/dist/lucene/solr/5.3.1/solr-5.3.1.tgz
+  996  ls -la
+  997  tar -xvf solr-5.3.1.tgz
+  998  ./ solr-5.3.1/bin/install_solr_service.sh --strip-components=2
+  999  . solr-5.3.1/bin/install_solr_service.sh --strip-components=2
+ 1000  cd -
+ 1001  cd projects/software/pro_admin_scripts_openSUSE/
+ 1002  cd setup/web/
+ 1003  ls
+ 1004  . env-allura/bin/activate
+ 1005  cd tmp/
+ 1006  ls
+ 1007  ./solr-5.3.1/bin/install_solr_service.sh --strip-components=2
+ 1008* sudo .
+ 1009  sudo tar xvf solr-5.3.1.tgz solr-5.3.1/bin/install_solr_service.sh --strip-components=2
+ 1010  sudo ./install_solr_service.sh  solr-5.3.1.tgz 
+ 1011  cd ../src/allura/
+ 1012  sudo -H -u solr bash -c 'cp -R solr_config/allura/ /var/solr/data'
+ 1013  getent passwd
+ 1014  sudo -H -u solr bash -c 'cp -R solr_config/allura/ /var/solr/data'
+ 1015  sudo --help
+ 1016  bash --help
+ 1017  getent passwd
+ 1018  sudo cp -R solr_config/allura/ /var/solr/data/
+ 1019  sudo chown solr /var/solr/data/
+ 1020  sudo service solr start
+ 1021  mkdir /srv/{git,svn,hg}
+ 1022  sudo mkdir /srv/{git,svn,hg}
+ 1023  sudo chown wwwrun:www /srv/{git,svn,hg}
+ 1024  sudo chmod 775 /srv/{git,svn,hg}
+ 1025  cd Allura
+ 1026  ls
+ 1027  nohup paster taskd development.ini > /var/log/allura/taskd.log 2>&1 &
+ 1028  sudo nohup paster taskd development.ini > /var/log/allura/taskd.log 2>&1 &
+ 1029  nohup --help
+ 1030  curl --silent --localtion https://deb.nodesource.com/setup_4.x | sodo bash -
+ 1031  curl --silent --localtion https://deb.nodesource.com/setup_4.x | sudo bash -
+ 1032  sudo zypper install nodejs4
+ 1033  sudo zypper ar http://download.opensuse.org/repositories/devel:/languages:/nodejs/openSUSE_Leap_42.2/ nodejs
+ 1034  zypper in nodejs
+ 1035  sudo zypper in nodejs
+ 1036  paster setup-app development.ini
+ 1037  sudo paster setup-app development.ini
+ 1038  ls -la
+ 1039  which paster
+ 1040  paster setup-app development.ini 
+ 1041  ls -la
+ 1042  sudo chown -R bensch:users ../../../* 
+ 1043  paster setup-app development.ini 
+ 1044  ls -la
+ 1045  sudo rcSuSEfirewall2 stop
+ 1046  paster setup-app development.ini 
+ 1047  sudo service mongodb restart
+ 1048  sudo zypper mongodb
+ 1049  sudo zypper in mongodb
+ 1050  sudo zypper in mongo
+ 1051  sudo zypper search mongo
+ 1052  sudo zypper addrepo --gpgcheck "https://repo.mongodb.org/zypper/suse/12/mongodb-org/3.6/x86_64/" mongodb
+ 1053  sudo zypper in mongodb-org
+ 1054  sudo service mongodb restart
+ 1055  sudo service mongod restart
+ 1056  paster setup-app development.ini 
+ 1057  gunicorn --reload --paste development.ini 
+ 1058  ls -la
+ 1059  history
+ 1060  history >> ~/projects/software/pro_admin_scripts_openSUSE/setup/web/history.txt
