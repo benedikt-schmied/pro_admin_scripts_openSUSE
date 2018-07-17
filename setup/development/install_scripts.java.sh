@@ -225,6 +225,20 @@ function do_uninstall_icedtea-web() {
 }
 
 # #############################################################################
+# \brief uninstall the opensource - package
+# 
+# \param void
+# #############################################################################
+function do_fetch_java() {
+
+	path=("http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.rpm?AuthParam=1531835526_43b5f82b1626c03520b8697013be9b02"
+	"https://sdlc-esd.oracle.com/ESD6/JSCDL/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jre-8u171-linux-x64.rpm?GroupName=JSC&FilePath=/ESD6/JSCDL/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jre-8u171-linux-x64.rpm&BHost=javadl.sun.com&File=jre-8u171-linux-x64.rpm&AuthParam=1531837128_ff399cbe1735349f0f5ea7c613fbb596&ext=.rpm"
+
+
+	# remove the opensource package
+}
+
+# #############################################################################
 # \brief install the runtime environment
 # 
 # \param package
