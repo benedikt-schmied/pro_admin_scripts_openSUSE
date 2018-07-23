@@ -2,7 +2,7 @@
 
 # #############################################################################
 # \brief scripts which installs all features in order to run, compile and debug 
-# 	java applications
+# 	zephyr applications
 #
 # \author benedikt schmied
 # #############################################################################
@@ -39,12 +39,6 @@ function do_print_debug() {
 function do_check_arguments() {
 	do_print_debug " checking the arguments "
 
-	if [ $# -ne 2 ]
-	then
-        	do_print_alert "we need the path to the runtime rpm as a parameter - we haven't go it, hence quit!"
-        	exit 0
-	fi
-
 	#we need to be administrator in order to let it run, hence check it
 	if [ "$EUID" != "0" ]
 	then
@@ -52,48 +46,43 @@ function do_check_arguments() {
 	        exit 0
 	fi
 
-	if [ -f $2 != 0  ]
-	then
-        	do_print_alert "this is not a valid file, we will quit!"
-	        exit 0
-	fi
 }
 
 # #############################################################################
-# \brief java application use 'update_alternatives' to find their VM, hence
+# \brief zephyr application use 'update_alternatives' to find their VM, hence
 # 	 we have to update the tables
 #
 # \param void
 # #############################################################################
-function do_update_alternatives_java() {
-	do_print_debug "update alternatives java"
+function do_update_alternatives_zephyr() {
+	do_print_debug "update alternatives zephyr"
 
 	# installing: 
-	# link="/usr/bin/java": symlink pointing
-	# name="java": is the master name of the link group
-	# path="/usr/java...": location of the target files
+	# link="/usr/bin/zephyr": symlink pointing
+	# name="zephyr": is the master name of the link group
+	# path="/usr/zephyr...": location of the target files
 	# priority=1: higher priority number of higher priority in automatic mode
-	update-alternatives --install "/usr/bin/java/" "java" "/usr/java/latest/bin/java" 1
+	update-alternatives --install "/usr/bin/zephyr/" "zephyr" "/usr/zephyr/latest/bin/zephyr" 1
 
 	# set
-	update-alternatives --set "java" "/usr/java/latest/bin/java"
+	update-alternatives --set "zephyr" "/usr/zephyr/latest/bin/zephyr"
 }
 
 
 # #############################################################################
-# \brief javac toolchain shall made known to the update-alternatives sub - 
+# \brief zephyrc toolchain shall made known to the update-alternatives sub - 
 #        subsystem
 #
 # \param void 
 # #############################################################################
-function do_update_alternatives_javac() {
-	do_print_debug "update alternatives javac"
+function do_update_alternatives_zephyrc() {
+	do_print_debug "update alternatives zephyrc"
 
         # installing
-	update-alternatives --install "/usr/bin/java" "java" "/usr/java/latest/bin/java" 1
+	update-alternatives --install "/usr/bin/zephyr" "zephyr" "/usr/zephyr/latest/bin/zephyr" 1
 
-	# set: java is an alternative to /usr/java...
-        update-alternatives --set java /usr/java/latest/bin/java
+	# set: zephyr is an alternative to /usr/zephyr...
+        update-alternatives --set zephyr /usr/zephyr/latest/bin/zephyr
 }
 
 
@@ -105,11 +94,11 @@ function do_update_alternatives_javac() {
 function do_install_jdk() {
 	do_print_debug "installing JDK"
 	
-	# install the new java package
+	# install the new zephyr package
 	rpm -ivh $1
 	
-	# update alternatives javac
-	do_update_alternatives_javac
+	# update alternatives zephyrc
+	do_update_alternatives_zephyrc
 
 	# compress the manual files
 	do_compress_manual	
@@ -127,9 +116,9 @@ function do_install_jdk() {
 function do_uninstall_manual() {
 	do_print_debug "uninstall manual"
 
-	# we will find the currently installed files, within the java latest
+	# we will find the currently installed files, within the zephyr latest
 	# folder
-	targetdir=/usr/java/latest/man/man1
+	targetdir=/usr/zephyr/latest/man/man1
 	linkdir=/usr/share/man/man1
 
 	# first, fetch all files in the current installation
@@ -163,9 +152,9 @@ function do_uninstall_manual() {
 function do_install_manual() {
 	do_print_debug "install manual"
 
-	# we will find the currently installed files, within the java latest
+	# we will find the currently installed files, within the zephyr latest
 	# folder
-	targetdir=/usr/java/latest/man/man1
+	targetdir=/usr/zephyr/latest/man/man1
 	linkdir=/usr/share/man/man1
 
 	# compress the target files
@@ -196,7 +185,7 @@ function do_compress_manual() {
 
 	# first, try to uninstall the previously installed manuals
 	
-	targetdir=/usr/java/latest/man/man1
+	targetdir=/usr/zephyr/latest/man/man1
 
 	# grap all files that end with '1'
 	a=$(find $targetdir -iname "*.1")
@@ -225,20 +214,6 @@ function do_uninstall_icedtea-web() {
 }
 
 # #############################################################################
-# \brief uninstall the opensource - package
-# 
-# \param void
-# #############################################################################
-function do_fetch_java() {
-
-	path=("http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.rpm?AuthParam=1531835526_43b5f82b1626c03520b8697013be9b02"
-	"https://sdlc-esd.oracle.com/ESD6/JSCDL/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jre-8u171-linux-x64.rpm?GroupName=JSC&FilePath=/ESD6/JSCDL/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jre-8u171-linux-x64.rpm&BHost=javadl.sun.com&File=jre-8u171-linux-x64.rpm&AuthParam=1531837128_ff399cbe1735349f0f5ea7c613fbb596&ext=.rpm"
-
-
-	# remove the opensource package
-}
-
-# #############################################################################
 # \brief install the runtime environment
 # 
 # \param package
@@ -246,7 +221,7 @@ function do_fetch_java() {
 function do_install_jre() {
         do_print_debug "installing JRE"
 
-        # install the new java package
+        # install the new zephyr package
         rpm -ivh $1
 
 	# check, whether we find the browser plugin
@@ -256,7 +231,7 @@ function do_install_jre() {
         plugin=$(rpm -ql $(rpm -qa | grep jre) | grep libnpjp2.so) && ln -svf "$plugin" /usr/lib64/browser-plugins/
 
 	# update alternatives
-	do_update_alternatives_java
+	do_update_alternatives_zephyr
 
 	
 }
@@ -272,19 +247,17 @@ function do_check_and_run() {
 	
 	do_print_debug "do check and run"
 
-	# check, whether we've got a jre or jdk package
-	if [[ $1 == jdk*.rpm ]];
-	then
-		do_uninstall_icedtea-web
-		do_install_jdk $1
-	elif [[ $1 == jre*.rpm ]];
-	then
-		do_uninstall_icedtea-web
-		do_install_jre $1
-	else 
-		do_print_alert "unknown package"
-	fi
- 
+
+	zypper ar http://download.opensuse.org/distribution/leap/42.3/repo/oss oss-42.3
+	zypper up cmake
+
+	https://github.com/zephyrproject-rtos/meta-zephyr-sdk/releases/download/0.9.3/zephyr-sdk-0.9.3-setup.run
+	chmod +x zephyr-sdk-0.9.3-setup.run
+	./zephyr-sdk-0.9.3.setup.run
+	
+	
+	export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
+	export ZEPHYR_SDK_INSTALL_DIR=/opt/zephyr-sdk
 }
 
 
@@ -308,8 +281,8 @@ function do_print_help() {
 # #############################################################################
 case $1 in
         install)
-		do_check_arguments $1 $2 $3
-		do_check_and_run $2
+		do_check_arguments $1
+		do_check_and_run
                 ;;
 	standard)
 		do_check_and_run "path_to_server"
