@@ -71,7 +71,10 @@ function do_treat_openocd() {
 
 	sudo zypper in libusb-1_0-devel
 	
-	cd ${file##*.}
+	cd ${file%%.*}
+	./configure
+	make
+	make install
 
 
 }
