@@ -76,6 +76,14 @@ function do_check_and_run() {
 		systemctl enable $service
 	done;
 
+	packages=(python3-PyMySQL)
+
+	for package in ${packages[@]};
+	do
+		echo  $package
+		zypper in $package 
+	done;
+
 }
 
 
