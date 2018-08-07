@@ -57,20 +57,24 @@ function do_check_and_run() {
 	
 	do_print_debug "do check and run"
 	
-	packages=(mariadb phpMyAdmin)
+	packages=(apache2 mariadb phpMyAdmin)
 
 	for package in ${packages[@]};
 	do
 		echo  $package
-		#zypper install $package
+		zypper install $package
 	done;
         
 	old="\$cfg\['Servers'\]\[\$i\]\['AllowNoPassword'\]          = false;"
 	new="\$cfg\['Servers'\]\[\$i\]\['AllowNoPassword'\]          = true;"
     	sed -i "s/$old/$new/g" /etc/phpMyAdmin/config.inc.php   	
 
-	rcmysql start
-	rcapache2 start
+	services=(apache2.service mysql.service)
+	for service in ${services[@]};
+	do
+		systemctl start $service
+		systemctl enable $service
+	done;
 
 }
 

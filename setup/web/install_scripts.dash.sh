@@ -57,7 +57,7 @@ function do_check_and_run() {
 	
 	do_print_debug "do check and run"
 	
-	packages=(python3 python-pip)
+	packages=(python3 python3-pip)
 
 	for package in ${packages[@]};
 	do
@@ -65,7 +65,7 @@ function do_check_and_run() {
 	done;
 	
 	# first, try to update pip, just in case "dash" has already been installed
-	python -m pip install --upgrade pip
+	python3 -m pip install --upgrade pip
 	
 	libraries=(
 		"dash==0.22.0" 
@@ -76,7 +76,7 @@ function do_check_and_run() {
 	
 	for library in ${libraries[@]};
 	do
-		pip install $library
+		python3 -m pip install $library
 	done;
 	
 
