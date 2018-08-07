@@ -61,10 +61,16 @@ function do_check_and_run() {
 
 	for package in ${packages[@]};
 	do
-		zypper install $package
+		echo  $package
+		#zypper install $package
 	done;
         
-        	
+	old="\$cfg\['Servers'\]\[\$i\]\['AllowNoPassword'\]          = false;"
+	new="\$cfg\['Servers'\]\[\$i\]\['AllowNoPassword'\]          = true;"
+    	sed -i "s/$old/$new/g" /etc/phpMyAdmin/config.inc.php   	
+
+	rcmysql start
+	rcapache2 start
 
 }
 
