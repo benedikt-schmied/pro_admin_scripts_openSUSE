@@ -49,7 +49,7 @@ function do_check_arguments() {
 
 # #############################################################################
 # first, install "apache allura", then install various libs 
-# 
+#https://en.opensuse.org/User:Matthewtrescott/OpenProject 
 # \param  void
 # #############################################################################
 function do_check_and_run() {
@@ -66,7 +66,11 @@ function do_check_and_run() {
 	do
 		zypper install $package
 	done;
-	
+	modules=(authz_host filter deflate proxy proxy_http)
+	for module in ${modules[@]};
+	do 
+		a2enmod $module
+	done;	
 
 }
 
