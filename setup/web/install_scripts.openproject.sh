@@ -57,7 +57,10 @@ function do_check_and_run() {
 	
 	do_print_debug "do check and run"
 	
-	packages=(python python-pip python-pysvn)
+	zypper addrepo https://download.opensuse.org/repositories/devel:/languages:/ruby/openSUSE_Leap_15.2/devel:languages:ruby.repo
+	zypper addrepo https://download.opensuse.org/repositories/devel:/languages:/ruby:/extensions/openSUSE_Leap_15.2/devel:languages:ruby:extensions.repo
+	zypper addrepo https://download.opensuse.org/repositories/home:/matthewtrescott:/openproject/openSUSE_Leap_15.2/home:matthewtrescott:openproject.repo	
+	packages=(openproject)
 
 	for package in ${packages[@]};
 	do
