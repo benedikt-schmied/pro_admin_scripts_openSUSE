@@ -11,6 +11,11 @@
 # input path
 # output path
 # 
+# Duplicates shall be identified using two parameters
+# EXIF - Tags are equal
+# they are the same size
+#
+# 
 #----------------------------------------------------------
 
 
