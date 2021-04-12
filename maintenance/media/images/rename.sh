@@ -52,15 +52,33 @@ echo "--- fetched all pictures"
 for i in ${a[@]};
 do
 	filename=${i##*/}
+	extension=${filename##*.}	
+	echo "working on "$i
 	
-	# what will be the filename afterwards
-    	#final_name=$(exiftool '-DataTimeOriginal $tmpdir/$filename %Y-%m-%d_%H-%M-%S.%%e')
-    	final_name=$(exiftool '-DataTimeOriginal $tmpdir/$filename')
-	echo $file_name
-	exit
-	if [ -f $final_name ];
+	# what will be the filename afterwards?
+	# the formatter is given with the '-d' parameter
+	# we're asking for the DateTimeOriginal
+	# 's3' strips down the information to the pure data (without field identifier such as "Date Time ...")
+    	
+	final_name=$(exiftool -s3 -d "%Y-%m-%d_%H-%M-%S" -DateTimeOriginal $i)
+    	#final_name=$(exiftool '-DataTimeOriginal $tmpdir/$filename')
+	echo $final_name.$extension
+	if [ ! -f $tmpdir/$final_name.$extension ];
 	then
-		exiftool '-Filename<DateTimeOriginal' -d %Y-%m-%d_%H-%M-%S%%-c.%%e $tmpdir/$filane -o $tmpdir/$filename
+		echo "starting copy operation"
+		# we're using a similar command as above for the copy operation
+		# as 'exiftool' will rectify any problem during the copy operation
+		exiftool '-Filename<DateTimeOriginal' -d %Y-%m-%d_%H-%M-%S.%%e $i -o $tmpdir
+	else
+		echo "already existing, checking for size"
+		file_sz_existing=$(du -k $i | cut -f1)
+		file_sz_new=$(du -k $tmpdir/$final_name.$extension | cut -f1)
+		echo "new file "$file_sz_new " existing "$file_sz_existing
+		if [ $file_sz_existing -neq $file_sz_new ];
+		then
+			echo "this is a different file, thus, creating a clone"
+			exiftool '-Filename<DateTimeOriginal' -d %Y-%m-%d_%H-%M-%S%%-c.%%e $i -o $tmpdir
+		fi
 	fi
 
 done
