@@ -44,6 +44,7 @@ else
 fi
 
 # find all images (at least all jpegs)
+IFS=$'\n'
 a=$(find . -iname "*.[jJ][pP]*[gG]")
 
 echo "--- fetched all pictures"
@@ -74,7 +75,7 @@ do
 		file_sz_existing=$(du -k $i | cut -f1)
 		file_sz_new=$(du -k $tmpdir/$final_name.$extension | cut -f1)
 		echo "new file "$file_sz_new " existing "$file_sz_existing
-		if [ $file_sz_existing -neq $file_sz_new ];
+		if [ $file_sz_existing -ne $file_sz_new ];
 		then
 			echo "this is a different file, thus, creating a clone"
 			exiftool '-Filename<DateTimeOriginal' -d %Y-%m-%d_%H-%M-%S%%-c.%%e $i -o $tmpdir
@@ -82,3 +83,4 @@ do
 	fi
 
 done
+unset IFS
