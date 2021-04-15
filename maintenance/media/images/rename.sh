@@ -62,6 +62,11 @@ do
 	# 's3' strips down the information to the pure data (without field identifier such as "Date Time ...")
     	
 	final_name=$(exiftool -s3 -d "%Y-%m-%d_%H-%M-%S" -DateTimeOriginal $i)
+
+	# let's introduce a check for the return value here and simply
+	# continue processing in case the return value is zero 
+	# and the given string is unequal ""
+
     	#final_name=$(exiftool '-DataTimeOriginal $tmpdir/$filename')
 	echo $final_name.$extension
 	if [ ! -f $tmpdir/$final_name.$extension ];
