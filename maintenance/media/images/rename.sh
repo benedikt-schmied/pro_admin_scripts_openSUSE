@@ -66,6 +66,8 @@ do
 	# let's introduce a check for the return value here and simply
 	# continue processing in case the return value is zero 
 	# and the given string is unequal ""
+	
+	
 
     	#final_name=$(exiftool '-DataTimeOriginal $tmpdir/$filename')
 	echo $final_name.$extension
