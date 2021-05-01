@@ -201,10 +201,18 @@ function move_none_jpgs() {
 
 case $1 in
 	batch)
+		create_folders
+		delete_unnecessary_files
+		fetch_images_in_input_folder
+		rename_and_move_into_tmp_or_trash
+		move_from_tmp_to_out
+		move_none_jpgs
 		;;
-	structure)
+	fill_out)
+		move_from_tmp_to_out	
 		;;
 	*)
+		echo " [batch, fill_out] basedir inputdir"
 		;;
 esac
 unset IFS
