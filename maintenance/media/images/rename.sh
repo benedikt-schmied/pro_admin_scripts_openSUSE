@@ -79,7 +79,7 @@ do
 	# continue processing in case the return value is zero 
 	# and the given string is unequal ""
         
-        if [ "$finalname" == "" ];
+        if [ "$final_name" == "" ];
 	then
 		echo "not able to exif - meta - info from file"	
 		cp $i $faultdir
