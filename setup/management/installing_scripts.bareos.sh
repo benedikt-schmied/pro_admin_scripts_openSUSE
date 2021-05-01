@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "installing the jave runtime"
 
-if [ $# -ne 2 ]
+if [ $# -ne 1 ]
 then
         echo "we need the path to the runtime rpm as a parameter - we haven't go it, hence quit!"
         exit 0
@@ -14,11 +14,6 @@ then
         exit 0
 fi
 
-if [ -f $2 != 0  ]
-then
-        echo "this is not a valid file, we will quit!"
-        exit 0
-fi
 
 
 # #############################################################################
@@ -72,7 +67,15 @@ function do_install_jre() {
 # #############################################################################
 function do_check_and_run() {
 	
+	# 1. add the repository and intall bareos
+	zypper ar -cgf http://download.bareos.org/bareos/release/latest/openSUSE_Leap_42.2/ bareos	
+	zypper in bareos
+	
+	# 2. run the scripts that create the database, tables, ...
+	bscripts=/usr/lib/bareos/scripts
+	$bscripts/create_bareos_database mysql -p
 
+	
 }
 
 
