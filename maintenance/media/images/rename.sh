@@ -18,12 +18,15 @@
 # 
 #----------------------------------------------------------
 
+rootnode=$2
 working_base=$1
 tmpdir=$working_base/tmp
 outdir=$working_base/out
+faultdir=$working_base/fault
 
-find . -iname "*SYNO*" -exec rm -rf {} \;
-find . -iname "*eadir*" -exec rm -rf {} \;
+echo "starting to delete unknown files"
+find $rootnode -iname "*SYNO*" -exec rm -rf {} \;
+find $rootnode -iname "*eadir*" -exec rm -rf {} \;
 
 if [ -d $tmpdir ]
 then
@@ -43,9 +46,18 @@ else
 	sudo chmod 777 $outdir
 fi
 
+if [ -d $faultdir ]
+then
+	echo "faultdir already exists"
+else
+	sudo mkdir $faultdir
+	sudo chgrp users $faultdir
+	sudo chmod 777 $faultdir
+fi
+
 # find all images (at least all jpegs)
 IFS=$'\n'
-a=$(find . -iname "*.[jJ][pP]*[gG]")
+a=$(find $rootnode -iname "*.[jJ][pP]*[gG]")
 
 echo "--- fetched all pictures"
 
@@ -66,28 +78,36 @@ do
 	# let's introduce a check for the return value here and simply
 	# continue processing in case the return value is zero 
 	# and the given string is unequal ""
-	
-	
-
-    	#final_name=$(exiftool '-DataTimeOriginal $tmpdir/$filename')
-	echo $final_name.$extension
-	if [ ! -f $tmpdir/$final_name.$extension ];
+        
+        if [ "$finalname" == "" ];
 	then
-		echo "starting copy operation"
-		# we're using a similar command as above for the copy operation
-		# as 'exiftool' will rectify any problem during the copy operation
-		exiftool '-Filename<DateTimeOriginal' -d %Y-%m-%d_%H-%M-%S.%%e $i -o $tmpdir
+		echo "not able to exif - meta - info from file"	
+		cp $i $faultdir
 	else
-		echo "already existing, checking for size"
-		file_sz_existing=$(du -k $i | cut -f1)
-		file_sz_new=$(du -k $tmpdir/$final_name.$extension | cut -f1)
-		echo "new file "$file_sz_new " existing "$file_sz_existing
-		if [ $file_sz_existing -ne $file_sz_new ];
-		then
-			echo "this is a different file, thus, creating a clone"
-			exiftool '-Filename<DateTimeOriginal' -d %Y-%m-%d_%H-%M-%S%%-c.%%e $i -o $tmpdir
-		fi
-	fi
 
+		#final_name=$(exiftool '-DataTimeOriginal $tmpdir/$filename')
+		echo $final_name.$extension
+		if [ ! -f $tmpdir/$final_name.$extension ];
+		then
+			echo "starting copy operation"
+			# we're using a similar command as above for the copy operation
+			# as 'exiftool' will rectify any problem during the copy operation
+			exiftool '-Filename<DateTimeOriginal' -d %Y-%m-%d_%H-%M-%S.%%e $i -o $tmpdir
+		else
+			echo "already existing, checking for size"
+			file_sz_existing=$(du -k $i | cut -f1)
+			file_sz_new=$(du -k $tmpdir/$final_name.$extension | cut -f1)
+			echo "new file "$file_sz_new " existing "$file_sz_existing
+			if [ $file_sz_existing -ne $file_sz_new ];
+			then
+				echo "this is a different file, thus, creating a clone"
+				exiftool '-Filename<DateTimeOriginal' -d %Y-%m-%d_%H-%M-%S%%-c.%%e $i -o $tmpdir
+			fi
+		fi
+	fi;
 done
+
+
+
+
 unset IFS
