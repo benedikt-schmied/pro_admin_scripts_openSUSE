@@ -23,6 +23,7 @@ working_base=$1
 tmpdir=$working_base/tmp
 outdir=$working_base/out
 faultdir=$working_base/fault
+nonjpg=$working_base/njpg
 
 echo "starting to delete unknown files"
 find $rootnode -iname "*SYNO*" -exec rm -rf {} \;
@@ -53,6 +54,15 @@ else
 	sudo mkdir $faultdir
 	sudo chgrp users $faultdir
 	sudo chmod 777 $faultdir
+fi
+
+if [ -d $nonpjg ]
+then
+	echo "faultdir already exists"
+else
+	sudo mkdir $nonjpg
+	sudo chgrp users $nonjpg
+	sudo chmod 777 $nonjpg
 fi
 
 # find all images (at least all jpegs)
@@ -105,9 +115,18 @@ do
 			fi
 		fi
 	fi;
+
+	# so seems, that we've either could read and copy the file or we've put it into a fault - folder
+	# let's delete it!
+	# rm $i
 done
 
+# now, look for all files that are non-hidden and non-jpg
+a=$(find $rootnode -type f -iname "*.*")
 
-
+for i in ${a[@]};
+do 
+	mv $i $nonjpg
+done
 
 unset IFS
