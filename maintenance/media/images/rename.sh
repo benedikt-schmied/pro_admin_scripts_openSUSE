@@ -33,7 +33,10 @@ tmpdir=$working_base/tmp
 outdir=$working_base/out
 faultdir=$working_base/fault
 nonjpg=$working_base/njpg
-rootnode=$2
+
+# '1', files are move; '0', origin files are preserved
+switch_move=1
+
 
 if [ $# -ne 3 ]
 then
@@ -54,7 +57,7 @@ fi
 #
 # #########################################################################
 function delete_unnecessary_files() {
-	echo "starting to delete unknown files"
+	echo "starting to delete unknown files in $rootnode"
 	find $rootnode -iname "*SYNO*" -exec rm -rf {} \;
 	find $rootnode -iname "*eadir*" -exec rm -rf {} \;
 }
@@ -92,7 +95,7 @@ function create_folders() {
 		sudo chmod 777 $faultdir
 	fi
 
-	if [ -d $nonpjg ]
+	if [ -d $nonjpg ]
 	then
 		echo "faultdir already exists"
 	else
@@ -140,8 +143,15 @@ function rename_and_move_into_tmp_or_trash() {
 		
 		if [ "$final_name" == "" ];
 		then
-			echo "not able to exif - meta - info from file"	
-			cp $i $faultdir
+			echo "not able to exif - meta - info from file"
+			if [ $switch_move -eq 0 ];
+			then
+				mv $i $faultdir
+			else
+				cp $i $faultdir
+			fi	
+			
+			
 		else
 
 			#final_name=$(exiftool '-DataTimeOriginal $tmpdir/$filename')
@@ -163,11 +173,16 @@ function rename_and_move_into_tmp_or_trash() {
 					exiftool '-Filename<DateTimeOriginal' -d %Y-%m-%d_%H-%M-%S%%-c.%%e $i -o $tmpdir
 				fi
 			fi
+			
+			# so seems, that we've either could read and copy the file or we've put it into a fault - folder
+			# let's delete it!
+			if [ $switch_move -ne 0 ]
+			then
+				rm $i
+			fi
+			break
 		fi;
 
-		# so seems, that we've either could read and copy the file or we've put it into a fault - folder
-		# let's delete it!
-		# rm $i
 	done
 }
 
@@ -183,7 +198,12 @@ function move_from_tmp_to_out() {
 	do
 		
 		#note, that o means copy operation
-		exiftool -o . '-Directory<DateTimeOriginal' -d "$outdir/%Y/%Y-%m/%Y-%m-%d" $i
+		if [ $switch_move -eq 0 ];
+		then
+			exiftool -o . '-Directory<DateTimeOriginal' -d "$outdir/%Y/%Y-%m/%Y-%m-%d" $i
+		else
+			exiftool '-Directory<DateTimeOriginal' -d "$outdir/%Y/%Y-%m/%Y-%m-%d" $i
+		fi
 	done
 }
 
@@ -192,7 +212,7 @@ function move_from_tmp_to_out() {
 # #########################################################################
 function move_none_jpgs() {
 	# now, look for all files that are non-hidden and non-jpg
-	a=$(find $rootnode -type f -iname "*.*")
+	a=$(find $rootnode -type f -! -iname "*.[jJ][pP]*[gG]")
 
 	for i in ${a[@]};
 	do 
@@ -207,7 +227,10 @@ case $1 in
 		fetch_images_in_input_folder
 		rename_and_move_into_tmp_or_trash
 		move_from_tmp_to_out
-		move_none_jpgs
+		if [ $switch_move -ne 0 ]
+		then
+			move_none_jpgs
+		fi
 		;;
 	fill_out)
 		move_from_tmp_to_out	
