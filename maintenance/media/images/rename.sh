@@ -18,52 +18,72 @@
 # 
 #----------------------------------------------------------
 
+
+# #########################################################################
+# the following definitions are necessary for running these scripts
+# e.g.
+# folders, ...
+# #########################################################################
+rootnode=$2
 rootnode=$2
 working_base=$1
 tmpdir=$working_base/tmp
 outdir=$working_base/out
 faultdir=$working_base/fault
 nonjpg=$working_base/njpg
+rootnode=$2
 
-echo "starting to delete unknown files"
-find $rootnode -iname "*SYNO*" -exec rm -rf {} \;
-find $rootnode -iname "*eadir*" -exec rm -rf {} \;
+# #########################################################################
+#
+# #########################################################################
+function delete_unnecessary_files() {
+	echo "starting to delete unknown files"
+	find $rootnode -iname "*SYNO*" -exec rm -rf {} \;
+	find $rootnode -iname "*eadir*" -exec rm -rf {} \;
+}
 
-if [ -d $tmpdir ]
-then
-	echo "out already exists"
-else
-	sudo mkdir $tmpdir
-	sudo chgrp users $tmpdir
-	sudo chmod 777 $tmpdir
-fi
 
-if [ -d $outdir ]
-then
-	echo "out already exists"
-else
-	sudo mkdir $outdir
-	sudo chgrp users $outdir
-	sudo chmod 777 $outdir
-fi
+# #########################################################################
+#
+# #########################################################################
+function create_folders() {
 
-if [ -d $faultdir ]
-then
-	echo "faultdir already exists"
-else
-	sudo mkdir $faultdir
-	sudo chgrp users $faultdir
-	sudo chmod 777 $faultdir
-fi
+	if [ -d $tmpdir ]
+	then
+		echo "out already exists"
+	else
+		sudo mkdir $tmpdir
+		sudo chgrp users $tmpdir
+		sudo chmod 777 $tmpdir
+	fi
 
-if [ -d $nonpjg ]
-then
-	echo "faultdir already exists"
-else
-	sudo mkdir $nonjpg
-	sudo chgrp users $nonjpg
-	sudo chmod 777 $nonjpg
-fi
+	if [ -d $outdir ]
+	then
+		echo "out already exists"
+	else
+		sudo mkdir $outdir
+		sudo chgrp users $outdir
+		sudo chmod 777 $outdir
+	fi
+
+	if [ -d $faultdir ]
+	then
+		echo "faultdir already exists"
+	else
+		sudo mkdir $faultdir
+		sudo chgrp users $faultdir
+		sudo chmod 777 $faultdir
+	fi
+
+	if [ -d $nonpjg ]
+	then
+		echo "faultdir already exists"
+	else
+		sudo mkdir $nonjpg
+		sudo chgrp users $nonjpg
+		sudo chmod 777 $nonjpg
+	fi
+}
 
 # find all images (at least all jpegs)
 IFS=$'\n'
@@ -120,6 +140,22 @@ do
 	# let's delete it!
 	# rm $i
 done
+
+
+# #########################################################################
+#
+# #########################################################################
+function move_from_tmp_to_out() {
+	
+	# all files are in a plain structure, let's create a structure in the out - folder
+	a=$(find $tmpdir -iname "*.*")
+	
+	# ... and start to create a new structure
+	for i in ${a[@]};
+	do
+		exiftool '-Directory<DateTimeOriginal' -d %Y/%Y%-m/Y%-%m-%d $outdir 	
+	done
+}
 
 # now, look for all files that are non-hidden and non-jpg
 a=$(find $rootnode -type f -iname "*.*")
