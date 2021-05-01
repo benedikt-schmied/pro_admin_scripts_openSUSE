@@ -107,7 +107,7 @@ IFS=$'\n'
 # #########################################################################
 #
 # #########################################################################
-functions fetch_images_in_input_folder() {
+function fetch_images_in_input_folder() {
 
 	# find all images (at least all jpegs)
 	a=$(find $rootnode -iname "*.[jJ][pP]*[gG]")
@@ -178,11 +178,12 @@ function move_from_tmp_to_out() {
 	
 	# all files are in a plain structure, let's create a structure in the out - folder
 	a=$(find $tmpdir -iname "*.*")
-	
 	# ... and start to create a new structure
 	for i in ${a[@]};
 	do
-		exiftool '-Directory<DateTimeOriginal' -d %Y/%Y%-m/Y%-%m-%d $outdir 	
+		
+		#note, that o means copy operation
+		exiftool -o . '-Directory<DateTimeOriginal' -d "$outdir/%Y/%Y-%m/%Y-%m-%d" $i
 	done
 }
 
