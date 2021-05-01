@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "installing the digikam and the corresponding database"
-helpstr="param 1: command\n param2: password"
+helpstr="param 1: command param2: password"
 
 if [ $# -ne 2 ]
 then
@@ -15,11 +15,6 @@ then
         exit 0
 fi
 
-if [ -f $2 != 0  ]
-then
-        echo "this is not a valid file, we will quit!"
-        exit 0
-fi
 
 
 # #############################################################################
@@ -27,8 +22,21 @@ fi
 # #############################################################################
 function do_() {
         echo "enabling and starting data"
+	echo $1
+	#return
+	
+	systemctl enable mysql
+	systemctl start mysql
+	dbstr="CREATE USER IF NOT EXISTS 'digikamuser'@'%' IDENTIFIED BY '$1'; CREATE USER IF NOT EXISTS 'digikamuser'@'localhost' IDENTIFIED BY '$1'; CREATE DATABASE digikam; GRANT ALL PRIVILEGES ON digikam.* TO 'digikamuser'@'%'; GRANT ALL PRIVILEGES ON digikam.* TO 'digikamuser'@'localhost'; FLUSH PRIVILEGES;"
+	echo $dbstr
+	mysql -u root -p --execute="$dbstr"
+	
+	
+	firewall-cmd --runtime-to-permanent
+	firewall-cmd --add-service mysql
+	systemctl restart mysql
 
-
+	echo "check binding of mysql - server!"
 }
 
 # #############################################################################
@@ -36,7 +44,7 @@ function do_() {
 # or a development kit
 # #############################################################################
 function do_check_and_run() {
-	
+	echo "check"	
 
 }
 
