@@ -15,6 +15,9 @@
 # EXIF - Tags are equal
 # they are the same size
 #
+# @param	command
+# @param	basedir
+# @param	inputdir
 # 
 #----------------------------------------------------------
 
@@ -24,14 +27,28 @@
 # e.g.
 # folders, ...
 # #########################################################################
-rootnode=$2
-rootnode=$2
-working_base=$1
+rootnode=$3
+working_base=$2
 tmpdir=$working_base/tmp
 outdir=$working_base/out
 faultdir=$working_base/fault
 nonjpg=$working_base/njpg
 rootnode=$2
+
+if [ $# -ne 3 ]
+then
+        echo "we need the path to the runtime rpm as a parameter - we haven't go it, hence quit!"
+        exit 0
+fi
+
+
+#we need to be administrator in order to let it run, hence check it
+if [ "$EUID" != "0" ]
+then
+        echo "we need to be administratro - we aren't, hence quit!"
+        exit 0
+fi
+
 
 # #########################################################################
 #
@@ -169,12 +186,25 @@ function move_from_tmp_to_out() {
 	done
 }
 
-# now, look for all files that are non-hidden and non-jpg
-a=$(find $rootnode -type f -iname "*.*")
+# #########################################################################
+#
+# #########################################################################
+function move_none_jpgs() {
+	# now, look for all files that are non-hidden and non-jpg
+	a=$(find $rootnode -type f -iname "*.*")
 
-for i in ${a[@]};
-do 
-	mv $i $nonjpg
-done
+	for i in ${a[@]};
+	do 
+		mv $i $nonjpg
+	done
+}
 
+case $1 in
+	batch)
+		;;
+	structure)
+		;;
+	*)
+		;;
+esac
 unset IFS
