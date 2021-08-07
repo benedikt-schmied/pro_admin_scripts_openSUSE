@@ -99,12 +99,8 @@ function create_and_populate_and_clone() {
 
 
 # #########################################################################
-# it will take each folder it can find
-# initialize a git repository
-# add all files to this repository
-# do a initial commit
-# change directory and clone a bore repository which
-# it will move to the server
+# it take the given directory in order to pull from each remote 
+# repository. Note, that it will not switch the branch
 # 
 # \param 	$1	base directory	
 # #########################################################################
@@ -119,6 +115,31 @@ function pull_all_projects() {
 				cd $a;
 				echo $a;
 				git pull;
+				cd $b;
+			else
+				echo "$a is not a git repository (a working copy)"
+			fi
+		fi
+	done
+}
+
+# #########################################################################
+# it take the given directory in order to pull from each remote 
+# repository. Note, that it will not switch the branch
+# 
+# \param 	$1	base directory	
+# #########################################################################
+function push_to_remote_all_projects() {
+	b=$1
+	for a in ./*;
+	do
+		if [ -d $a ];
+		then
+			if [ -d $a/.git ];
+			then
+				cd $a;
+				echo $a;
+				git push origin;
 				cd $b;
 			else
 				echo "$a is not a git repository (a working copy)"
@@ -154,17 +175,6 @@ case $1 in
 esac
 unset IFS
 
-b=$PWD
-for a in ./*;
-do
-if [ -d $a ];
-then
-cd $a;
-echo $a;
-git push origin master;
-cd $b;
-fi
-done
 
 b=$PWD
 for a in ./*;
