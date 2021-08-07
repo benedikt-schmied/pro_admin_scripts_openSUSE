@@ -149,13 +149,38 @@ function push_to_remote_all_projects() {
 }
 
 # #########################################################################
+# it take the given directory in order to pull from each remote 
+# repository. Note, that it will not switch the branch
+# 
+# \param 	$1	base directory	
+# #########################################################################
+function show_status_all_projects() {
+	b=$1
+	for a in ./*;
+	do
+		if [ -d $a ];
+		then
+			if [ -d $a/.git ];
+			then
+				cd $a;
+				echo $a;
+				git status;
+				cd $b;
+			else
+				echo "$a is not a git repository (a working copy)"
+			fi
+		fi
+	done
+}
+
+# #########################################################################
 #
 # #########################################################################
 function create_folders() {
 
 	if [ -d $vcsfault ]
 	then
-		echo "out already exists"
+		echo "vcsfault already exists"
 	else
 		sudo mkdir $vcsfault
 		sudo chgrp users $vcsfault
@@ -174,17 +199,4 @@ case $1 in
 		;;
 esac
 unset IFS
-
-
-b=$PWD
-for a in ./*;
-do
-if [ -d $a ];
-then
-cd $a;
-echo $a;
-git status;
-cd $b;
-fi
-done
 
