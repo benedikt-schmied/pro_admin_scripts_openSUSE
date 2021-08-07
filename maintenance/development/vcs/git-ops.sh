@@ -16,13 +16,9 @@ rootnode=$3
 working_base=$2
 vcsfault=$working_base/vcsfault
 
-# '1', files are move; '0', origin files are preserved
-switch_move=1
-
-
-if [ $# -ne 3 ]
+if [ $# -lt 2 ]
 then
-        echo "we need the path to the runtime rpm as a parameter - we haven't go it, hence quit!"
+        echo "we need at least the command as well as the base directory!"
         exit 0
 fi
 
@@ -43,16 +39,17 @@ fi
 # change directory and clone a bore repository which
 # it will move to the server
 # 
-# \param 	$1	name of future repository (of directory)
-# \param	$2	remote git server (that can be accessed via ssh)
+# \param	$1	base directory 
+# \param 	$2	name of future repository (of directory)
+# \param	$3	remote git server (that can be accessed via ssh)
 # #########################################################################
 function create_and_populate_and_clone() {
 
 	echo "this it the move to git script"
 
-	main_dir=$PWD
+	main_dir=$1
 
-	a=$main_dir/$1
+	a=$main_dir/$2
 
 	if [ -d $a ] 
 	then
@@ -85,12 +82,12 @@ function create_and_populate_and_clone() {
 		git clone --bare $b $b.git
 
 		# push it to the linux server
-		scp -r $b.git $2
+		scp -r $b.git $3
 
 		rm -rf $b $b.git
 
 		#clone it again
-		git clone $2/$b
+		git clone $3/$b
 
 		# return from this directory
 		cd $main_dir
@@ -191,11 +188,20 @@ function create_folders() {
 IFS=$'\n'
 
 case $1 in
-	batch)
-		create_folders
+	create)
+		create_and_populate_and_clone $2 $3 $3
+		;;
+	pull)
+		pull_from_remote_all_projects $2
+		;;
+	push)
+		push_to_remote_all_projects $2
+		;;
+	status)
+		show_status_all_projects $2
 		;;
 	*)
-		echo " [batch] basedir inputdir"
+		echo " [create, pull, push, status] basedir [directory name] [server]
 		;;
 esac
 unset IFS
