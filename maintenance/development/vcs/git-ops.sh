@@ -177,34 +177,38 @@ function show_status_all_projects() {
 # 
 # \param 	$1	base directory	
 # #########################################################################
-function push_all_branches_to_remote_all_projects() {
+function synchronize_branches_all_projects() {
 	b=$1
+	echo $b
 	for a in $b/*;
 	do
 		if [ -d $a ];
 		then
-			if [ -d $a/.git ];
+			if [ -f "$a/.git" -o -d "$a/.git/" ];
 			then
 				cd $a;
 				echo $a;
 				git fetch;
 				git add *;
 				#read $msg
-				git commit -im "just a snapshot"
+				#git commit -im "just a snapshot"
 				branches=$(git branch --list)
-				branches=${a/\*/)
+				branches=${branches/\*/}
 				for branch in ${branches[@]};
 				do 
 					echo "working on branch: $branch"
-					git pull origin;
-					git add *;
-					git commit -m "just another snapshot";
-					git push origin;
+					#git pull origin;
+					#git add *;
+					#git commit -m "just another snapshot";
+					#git push origin;
 				done;
 				cd $b;
 			else
 				echo "$a is not a git repository (a working copy)"
 			fi
+		else
+			pwd
+			echo "exmaining directory $a"
 		fi
 	done
 }
@@ -225,6 +229,7 @@ function create_folders() {
 }
 
 IFS=$'\n'
+unset IFS
 
 case $1 in
 	create)
@@ -236,12 +241,14 @@ case $1 in
 	push)
 		push_to_remote_all_projects $2
 		;;
+	synchronize)
+		synchronize_branches_all_projects $2
+		;;
 	status)
 		show_status_all_projects $2
 		;;
 	*)
-		echo " [create, pull, push, status] basedir [directory name] [server]
+		echo "create, pull, push, status basedir directory name server"
 		;;
 esac
-unset IFS
 
