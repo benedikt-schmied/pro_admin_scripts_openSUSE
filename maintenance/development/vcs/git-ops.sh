@@ -103,7 +103,7 @@ function create_and_populate_and_clone() {
 # #########################################################################
 function pull_all_projects() {
 	b=$1
-	for a in ./*;
+	for a in $b/*;
 	do
 		if [ -d $a ];
 		then
@@ -128,7 +128,7 @@ function pull_all_projects() {
 # #########################################################################
 function push_to_remote_all_projects() {
 	b=$1
-	for a in ./*;
+	for a in $b/*;
 	do
 		if [ -d $a ];
 		then
@@ -153,7 +153,7 @@ function push_to_remote_all_projects() {
 # #########################################################################
 function show_status_all_projects() {
 	b=$1
-	for a in ./*;
+	for a in $b/*;
 	do
 		if [ -d $a ];
 		then
@@ -162,6 +162,45 @@ function show_status_all_projects() {
 				cd $a;
 				echo $a;
 				git status;
+				cd $b;
+			else
+				echo "$a is not a git repository (a working copy)"
+			fi
+		fi
+	done
+}
+
+# #########################################################################
+# loops throughougt all directories within the given base directory and
+# tries to push the local changes (in the local branches) to the remote
+# repositories (upstream)
+# 
+# \param 	$1	base directory	
+# #########################################################################
+function push_all_branches_to_remote_all_projects() {
+	b=$1
+	for a in $b/*;
+	do
+		if [ -d $a ];
+		then
+			if [ -d $a/.git ];
+			then
+				cd $a;
+				echo $a;
+				git fetch;
+				git add *;
+				#read $msg
+				git commit -im "just a snapshot"
+				branches=$(git branch --list)
+				branches=${a/\*/)
+				for branch in ${branches[@]};
+				do 
+					echo "working on branch: $branch"
+					git pull origin;
+					git add *;
+					git commit -m "just another snapshot";
+					git push origin;
+				done;
 				cd $b;
 			else
 				echo "$a is not a git repository (a working copy)"
