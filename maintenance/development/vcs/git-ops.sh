@@ -49,19 +49,20 @@ function create_and_populate_and_clone() {
 
 	main_dir=$1
 
-	a=$main_dir/$2
+	# target's full path
+	tfpath=$main_dir/$2
 
 	if [ -d $a ] 
 	then
 		# echo the current directory
-		echo $a
+		echo $tfpath
 
 		# go into the directory
-		cd $a
+		cd $tfpath
 
 		#extract the folders name -> project name from the current path
-		b=$(basename $a)
-		echo $b
+		echo $2
+		target=$2
 
 		# make a ignore file
 		echo "*.[ao]" >> .gitignore
@@ -79,18 +80,22 @@ function create_and_populate_and_clone() {
 		cd $main_dir
 
 		# do a bare clone operation
-		git clone --bare $b $b.git
+		git clone --bare $target $main_dir/$target.git
 
 		# push it to the linux server
-		scp -r $b.git $3
+		echo "let's move the stuff"
+		scp -r $target.git $3
 
-		rm -rf $b $b.git
+		echo "erfolgreich? y"
+		read $ui
+		if [ $ui == "y" ];
+		then
+			rm -rf $target $target.git
+		fi
 
 		#clone it again
-		git clone $3/$b
+		git clone $3/$target
 
-		# return from this directory
-		cd $main_dir
 	fi
 }
 
@@ -195,7 +200,7 @@ function synchronize_branches_all_projects() {
 				branches=${branches/\*/}
 				for branch in ${branches[@]};
 				do
-					if [ $branch == "detached" ]
+					if [ $branch == "detached" -o $branch == "losgelöst" ]
 					then
 						detached=true
 					fi
@@ -257,7 +262,7 @@ unset IFS
 
 case $1 in
 	create)
-		create_and_populate_and_clone $2 $3 $3
+		create_and_populate_and_clone $2 $3 $4
 		;;
 	pull)
 		pull_from_remote_all_projects $2
