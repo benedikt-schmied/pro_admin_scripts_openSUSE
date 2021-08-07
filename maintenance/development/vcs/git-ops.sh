@@ -199,6 +199,7 @@ function synchronize_branches_all_projects() {
 					then
 						detached=true
 					fi
+					
 				done
 				if [ $detached == true ];
 				then
@@ -206,22 +207,24 @@ function synchronize_branches_all_projects() {
 					git checkout master;
 					git add *;
 					#read $msg
-					#git commit -im "just a snapshot"
+					git commit -im "just a snapshot"
 				else
 					echo "we are not detached"
 					git add *;
 					#read $msg
-					#git commit -im "just a snapshot"
+					git commit -im "just a snapshot"
 				fi				
 				echo "now, we're ready to go"
+				branches=$(git branch --list)
+				branches=${branches/\*/}
 				for branch in ${branches[@]};
 				do 
 					echo "working on branch: $branch"
-					#git checkout $branch
-					#git pull origin;
-					#git add *;
-					#git commit -m "just another snapshot";
-					#git push origin;
+					git checkout $branch
+					git pull origin;
+					git add *;
+					git commit -m "just another snapshot";
+					git push origin;
 				done;
 				cd $b;
 			else
