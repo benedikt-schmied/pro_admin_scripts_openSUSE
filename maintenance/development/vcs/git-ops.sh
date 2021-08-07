@@ -186,17 +186,38 @@ function synchronize_branches_all_projects() {
 		then
 			if [ -f "$a/.git" -o -d "$a/.git/" ];
 			then
+				detached=false
+				echo $detached
 				cd $a;
 				echo $a;
 				git fetch;
-				git add *;
-				#read $msg
-				#git commit -im "just a snapshot"
 				branches=$(git branch --list)
 				branches=${branches/\*/}
 				for branch in ${branches[@]};
+				do
+					if [ $branch == "detached" ]
+					then
+						detached=true
+					fi
+				done
+				if [ $detached == true ];
+				then
+					echo "we are detached"
+					git checkout master;
+					git add *;
+					#read $msg
+					#git commit -im "just a snapshot"
+				else
+					echo "we are not detached"
+					git add *;
+					#read $msg
+					#git commit -im "just a snapshot"
+				fi				
+				echo "now, we're ready to go"
+				for branch in ${branches[@]};
 				do 
 					echo "working on branch: $branch"
+					#git checkout $branch
 					#git pull origin;
 					#git add *;
 					#git commit -m "just another snapshot";
