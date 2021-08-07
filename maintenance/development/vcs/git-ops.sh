@@ -99,6 +99,35 @@ function create_and_populate_and_clone() {
 
 
 # #########################################################################
+# it will take each folder it can find
+# initialize a git repository
+# add all files to this repository
+# do a initial commit
+# change directory and clone a bore repository which
+# it will move to the server
+# 
+# \param 	$1	base directory	
+# #########################################################################
+function pull_all_projects() {
+	b=$1
+	for a in ./*;
+	do
+		if [ -d $a ];
+		then
+			if [ -d $a/.git ]
+			then
+				cd $a;
+				echo $a;
+				git pull;
+				cd $b;
+			else
+				echo "$a is not a git repository (a working copy)"
+			fi
+		fi
+	done
+}
+
+# #########################################################################
 #
 # #########################################################################
 function create_folders() {
@@ -124,20 +153,7 @@ case $1 in
 		;;
 esac
 unset IFS
-#!/bin/bash
-b=$PWD
-for a in ./*;
-do
-if [ -d $a ];
-then
-cd $a;
-echo $a;
-git pull;
-cd $b;
-fi
-done
 
-#!/bin/bash
 b=$PWD
 for a in ./*;
 do
@@ -150,7 +166,6 @@ cd $b;
 fi
 done
 
-#!/bin/bash
 b=$PWD
 for a in ./*;
 do
