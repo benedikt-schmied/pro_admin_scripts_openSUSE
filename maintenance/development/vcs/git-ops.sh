@@ -88,13 +88,13 @@ function create_and_populate_and_clone() {
 
 		echo "erfolgreich? y"
 		read $ui
-		if [ $ui == "y" ];
+		if [ "$ui" == "y" ];
 		then
 			rm -rf $target $target.git
 		fi
 
 		#clone it again
-		git clone $3/$target
+		git clone $3/$target.git
 
 	fi
 }
