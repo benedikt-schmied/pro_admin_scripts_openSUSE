@@ -113,7 +113,7 @@ IFS=$'\n'
 function fetch_images_in_input_folder() {
 
 	# find all images (at least all jpegs)
-	a=$(find $rootnode -iname "*.[jJ][pP]*[gG]")
+	a=$(find $rootnode -type f -iname "*.[jJ][pP]*[gG]")
 
 	echo "--- fetched all pictures"
 }
@@ -141,6 +141,18 @@ function rename_and_move_into_tmp_or_trash() {
 		# continue processing in case the return value is zero 
 		# and the given string is unequal ""
 		
+		if [ $? -ne 0 ];
+		then
+			echo "something seems to be wrong, copy into fault - directory"
+			if [ $switch_move -eq 0 ];
+			then
+				cp $i $faultdir
+			else
+				mv $i $faultdir
+			fi
+			continue
+		fi
+
 		if [ "$final_name" == "" ];
 		then
 			echo "not able to exif - meta - info from file"
@@ -180,7 +192,6 @@ function rename_and_move_into_tmp_or_trash() {
 			then
 				rm $i
 			fi
-			break
 		fi;
 
 	done
@@ -234,6 +245,9 @@ case $1 in
 		;;
 	fill_out)
 		move_from_tmp_to_out	
+		;;
+	none_jpg)
+		move_none_jpgs
 		;;
 	*)
 		echo " [batch, fill_out] basedir inputdir"
